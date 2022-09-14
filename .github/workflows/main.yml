@@ -1,0 +1,16 @@
+name: Latest portfolio
+on:
+  schedule:
+    - cron: '0 0 * * *'
+    # This makes the action run at the end of every day. Customize this accordingly or you can also trigger this action for GitHub events (Pull, Push). Check the GitHub actions page for that.
+  workflow_dispatch:
+
+jobs:
+  updating-portfolio:
+    name: update-index-with-project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: kaustubhgupta/PortfolioFy@main 
+        with:
+          gh_token: ${{ secrets.TOKEN }} # Create a secret to store the access token 
