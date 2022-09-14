@@ -1,0 +1,23 @@
+name: Latest portfolio
+on:
+  schedule:
+      # Runs at the end of every day
+      - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:     
+  job_1:
+    name: update-index-with-project
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+        - uses: kaustubhgupta/PortfolioFy@main
+          with:
+            gh_token: ${{ secrets.TOKEN }}
+            stats_choice: 4
+            blogs: True
+            theme: 2
+            hackathons: False
+            social_links: "https://www.linkedin.com/in/kaustubh-gupta/, https://twitter.com/Kaustubh1828, https://medium.com/@kaustubhgupta1828"
+            allow_footer: False
+            project_sort_by: 'forks'
