@@ -1,13 +1,10 @@
-/*
-Please do not claim this website as your own. You don't have to give me credit but DON'T claim it's your code. When you use this as a base for your website please remove all tracking (Google Analytics, Heap).
-*/
 
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
 	width: 100%;
 	height: 100%;
-	background: #fff;
+	background: #ebffe1;
 	margin: 0;
 	padding: 0;
 }
@@ -127,7 +124,7 @@ h5 {
 /* start header */
 
 .navbar-fixed-top {
-	background-color: #E9BC3D;
+	background-color: #62f186;
 }
 
 .navbar-brand {
@@ -252,7 +249,7 @@ button.navbar-toggle.collapsed {
 	height: auto;
 	text-align: center;
 	color: white;
-	background: url(https://4kwallpapers.com/images/walls/thumbs_3t/188.jpg) no-repeat top center scroll;
+	background: url(wallpaperflare.com_wallpaper.jpg) no-repeat top center scroll;
 	background-size: cover;
 	-o-background-size: cover;
 }
@@ -403,7 +400,7 @@ span.city {
 
 .text {
 	background: #008080;
-	color: #fff;
+	color: #ffffff;
 	font-size: 18px;
 	height: 50px;
 	padding: 0 25px;
