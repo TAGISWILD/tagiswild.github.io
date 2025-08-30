@@ -1,275 +1,421 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2876380604791121"crossorigin="anonymous"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q77ERFBZ4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2Q77ERFBZ4');
-</script>
-
-  <meta charset="UTF-8">
-  <title>Atharva Chauhan</title>
   <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title> - My Landing Page</title>
-<meta name="description" content="I'm a software developer based in Mumbai, Maharashtra.">
-<meta name="viewport" content="width=device-width, initial-xscale=1">
-<!-- icon -->
-<link rel = "icon" href = 
-"/icon.ico" 
-        type = "image/x-icon"> 	
-
-<!-- css -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Montserrat:400,700"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atharva Chauhan - Backend Developer</title>
+  <meta name="description" content="Backend developer specializing in IoT solutions, scalable systems, and innovative products. Building the future with clean, efficient code.">
+  <link rel="icon" href="./icon.ico" type="image/x-icon">
+  <meta property="og:title" content="Atharva Chauhan - Backend Developer">
+  <meta property="og:description" content="Backend developer specializing in IoT solutions, scalable systems, and innovative products.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./photo.jpg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+            'mono': ['JetBrains Mono', 'monospace'],
+            'display': ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            'primary': {
+              50: '#f8f9fa',
+              100: '#f1f3f4',
+              200: '#e8eaed',
+              300: '#dadce0',
+              400: '#bdc1c6',
+              500: '#9aa0a6',
+              600: '#80868b',
+              700: '#5f6368',
+              800: '#3c4043',
+              900: '#202124',
+            },
+            'accent': {
+              500: '#000000',
+              600: '#1a1a1a',
+            }
+          },
+          animation: {
+            'bounce-slow': 'bounce 3s infinite',
+            'wiggle': 'wiggle 1s ease-in-out infinite',
+            'float': 'float 6s ease-in-out infinite',
+          }
+        }
+      }
+    }
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q77ERFBZ4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
+    gtag('config', 'G-2Q77ERFBZ4');
+  </script>
 </head>
-<body>
+<body class="bg-white text-gray-900 font-sans overflow-x-hidden">
+  <!-- Skip Link -->
+  <a href="#contact" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-lg z-50">Skip to contact</a>
 
-<body>
-	<!-- START PRELOADER -->
-	<div id="preloader">
-		<div id="status">&nbsp;</div>
-	</div>
-	<!-- END PRELOADER -->
-	<!-- Return to Top -->
-	<a href="javascript:" id="return-to-top"><span class="fa fa-arrow-up" aria-hidden="true"></span></a>
-	<!-- navigation -->
-	<!-- start Fixed navbar -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for mobile display -->
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#about">
-					<img alt="Atharva Chauhan" class="navbar-brand" src="/photo.jpg">
-				</a>
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ResponsiveNav">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-			</div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse navbar-right" id="ResponsiveNav">
-				<ul class="nav navbar-nav">
-					<li><a href="#about-me" class="page-scroll">ABOUT</a></li>
-					<li><a href="#portfolio" class="page-scroll">PORTFOLIO</a></li>
-					<li><a href="#services" class="page-scroll">SERVICES</a></li>
-					<li><a href="#contact" class="page-scroll">CONTACT</a></li>
-				</ul>
-			</div>
-			<!-- end collapse -->
-		</div>
-		<!-- end container fluid -->
-	</nav>
-	<!-- end navigation -->
-	<!-- intro header -->
-	<header class="intro">
-		<div class="intro-body">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<!-- start typer hello  -->
-						<div class="brand-heading">
-							<span class="txt-rotate" data-period="50" data-rotate='[ "Namaste,", "Hello,", "Vanakkam,", "Nomoshkar,", "Aadab,", "Pranam,", "KhammaGani," ]'></span>
-						</div>
-						<!-- end typer hello -->
-						<p class="intro-text">My name is Atharva Chauhan
-							<br> I'm a <span class="fa fa-code" aria-hidden="true"></span> <span class="intro-text-hgl">Software Developer</span> <span class="fa fa-code" aria-hidden="true"></span>
-							<br>based in the beautiful city of <span class="city">Mumbai</span>, India.</p>
-						<!-- start mouse wrap -->
-						<div class="mouse-warp">
-							<a href="#mouse-here" class="page-scroll">
-								<div class="mouse">
-									<div class="scroll"></div>
-								</div>
-							</a>
-						</div>
-						<!-- end mouse wrap -->
-					</div>
-					<!-- end column wrapping -->
-				</div>
-				<!-- end row header -->
-			</div>
-			<!-- end container header -->
-		</div>
-		<!-- end intro body -->
-	</header>
-	<!-- end intro header -->
-	<div id="mouse-here"></div>
+  <!-- Side Navigation -->
+  <nav class="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-6" aria-label="Section navigation">
+    <button data-target="#hero" aria-label="Hero" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-black transition-all duration-300 hover:scale-110 active:scale-95" aria-current="true"></button>
+    <button data-target="#about" aria-label="About" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-black transition-all duration-300 hover:scale-110 active:scale-95"></button>
+    <button data-target="#skills" aria-label="Skills" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-black transition-all duration-300 hover:scale-110 active:scale-95"></button>
+    <button data-target="#projects" aria-label="Projects" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-black transition-all duration-300 hover:scale-110 active:scale-95"></button>
+    <button data-target="#contact" aria-label="Contact" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-black transition-all duration-300 hover:scale-110 active:scale-95"></button>
+  </nav>
 
-	<section id="about-me">
-		<div class="container">
-			<div class="row">
-				<h2>ABOUT</h2>
-				<div class="col-lg-6 about-intro">
-					<div class="about-inner">
-						<div class="about-ct">
-							<img src="./photo.jpg" alt="Atharva Chauhan" class="img-responsive"width="300" height="200">
-							<div class="textbox-about hidden-xs">
-								<div class="btn button-social">
-									<a href="https://codepen.io/TAGISWILD/" target="_blank" alt="CodePen profile"><span class="fa fa-codepen" aria-hidden="true"></span></a>
-									<a href="https://www.linkedin.com/in/mrtag08" alt="LinkedIn profile" target="_blank"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
-									<a href="https://github.com/TAGISWILD" target="_blank" alt="GitHub profile"><span class="fa fa-github" aria-hidden="true"></span></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6 about-intro-text">
-				<p>
-				<span>Atharva Chauhan</span>, the owner and CEO of EthicCode Tech. Ltd., has played a pivotal role in the company's journey. Co-founder of the initial venture, Aysoat Ltd., Atharva underwent a significant transformation in December 2023, deciding to part ways with Aysoat due to conflicts and subsequently rebranding the company as EthicCode. Headquartered in Thane, Maharashtra, India, EthicCode is a leading software development company that prioritizes ethical practices in its operations.
-				</p>
-				<p>
-				Atharva's vision for EthicCode revolves around putting "Ethics First!" in software development. He is dedicated to delivering high-quality, user-friendly, and innovative software solutions while upholding a strong ethical code. With a commitment to customized business software solutions and comprehensive development services, EthicCode has successfully served a diverse clientele across various industries.
-				</p>
-				<p>
-				Atharva Chauhan's future endeavors for EthicCode include expanding the company's presence through new initiatives. This encompasses the launch of a tech podcast, EthicCodeCast, and engaging with a wider audience through platforms like Instagram, YouTube shorts, and TikTok (excluding India & US). Additionally, he plans to introduce Fun-Tech Project videos on the YouTube channel, showcasing versatility in the company's profile. Under Atharva's leadership, EthicCode remains dedicated to continued growth, promising innovation, and excellence in the field of ethical software development.
-				</p>
-					<div class="button-group">
-						</div>
-				</div>
-			</div>
-			<!-- end row about -->
-		</div>
-		<!-- end container about -->
-		<!-- start count stats -->
-		<section id="counter-stats">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3 stats">
-						<span class="fa fa-code" aria-hidden="true"></span>
-						<div class="counter" data-count="07112024">0</div>
-						<h5>Lines of code</h5>
-					</div>
-					<div class="col-lg-3 stats">
-						<span class="fa fa-check" aria-hidden="true"></span>
-						<div class="counter" data-count="78">0</div>
-						<h5>Projects done</h5>
-					</div>
-					<div class="col-lg-3 stats">
-						<span class="fa fa-user" aria-hidden="true"></span>
-						<div class="counter" data-count="10">0</div>
-						<h5>Happy clients</h5>
-					</div>
-					<div class="col-lg-3 stats">
-						<span class="fa fa-coffee" aria-hidden="true"></span>
-						<div class="counter" data-count="646">0</div>
-						<h5>Cups of coffee</h5>
-					</div>
-				</div>
-				<!-- end row counter stats -->
-			</div>
-			<!-- end container counter stats -->
-		</section>
-		<!-- end cont stats -->
-	</section>
-	<!-- end about me -->
-		<!-- start work portfolio -->
-	<section id="portfolio">
-		<div class="container-fluid portfolio-ct">
-			<h2>Amazing Youtube Videos</h2>
-			<div class="row">
-				<center>
-				<!-- start second portfolio item -->
-				<div class="col-sm-6 col-md-4 grid-portfolio">
-					<div class="portfolio-item-ct">
-						<div class="thumbnail">
-							<img src="./AoQ7Z-VmKMAhd.jpg" alt="ARE YOU FEELING LOW?" class="img-responsive">
-							<div class="textbox-portfolio">
-								<div class="button-weblink">
-									<a href="https://www.youtube.com/watch?v=AoQ7Z-VmKMA" target="_blank" alt="Portfolio - ARE YOU FEELING LOW?"><span class="fa fa-link portfolio-link" aria-hidden="true"></span></a>
-								</div>
-							</div>
-						</div>
-						<div class="caption portfolio-details">
-							<h3>Don't Purchase Youtube Music, Else Build Your Own</h3>
-							<p>Making a simple music player that downloads music from YouTube and plays it.
-								<br> using Python.
-							</p>
-							<ul class="portfolio-tags">
-							
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- end second portfolio item -->
-				<!-- start third portfolio item -->
-				<div class="col-sm-6 col-md-4 grid-portfolio">
-					<div class="portfolio-item-ct">
-						<div class="thumbnail">
-							<img src="./AILo7yTQrcEhd.jpg" alt="Portfolio - PERSONAL WEBSITE" class="img-responsive">
-							<div class="textbox-portfolio">
-								<div class="button-weblink">
-									<a href="https://www.youtube.com/watch?v=AILo7yTQrcE" alt="Portfolio - PERSONAL WEBSITE"><span class="fa fa-link portfolio-link" aria-hidden="true"></span></a>
-								</div>
-							</div>
-						</div>
-						<div class="caption portfolio-details">
-							<h3>Make Kali Linux Live USB</h3> 
-							<p>Make your own hacking USB and take it everywhere.</p>
-							<ul class="portfolio-tags">
-								
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-4 grid-portfolio">
-					<div class="portfolio-item-ct">
-						<div class="thumbnail">
-							<img src="./gafhgyaegfyadl.jpg" alt="Portfolio - PERSONAL WEBSITE" class="img-responsive">
-							<div class="textbox-portfolio">
-								<div class="button-weblink">
-									<a href="https://youtu.be/9qPE1d5kLd4" alt="Portfolio - CPPMAIL"><span class="fa fa-link portfolio-link" aria-hidden="true"></span></a>
-								</div>
-							</div>
-						</div>
-						<div class="caption portfolio-details">
-							<h3>C/C++ Library built for sending emails.</h3>
-							<p>Send Emails using C/C++</p>
-							<ul class="portfolio-tags">
-								
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- end third portfolio item -->
-				</center>
-			</div>
-			<!-- end row portfolio -->
-		</div>
-		<!-- end container portfolio -->
-	</section>
-	<!-- start footer -->
-	<footer id="contact">
-		<div class="container">
-			<div class="row">
-				<h2>CONTACT</h2>
-				<p>You can contact me at: <a href="mailto:mrtag08@gmail.com">mrtag08@gmail.com</a></p>
-				<br>
-				<div class="social">
-					<a href="https://codepen.io/TAGISWILD/" target="_blank" alt="CodePen profile"><span class="fa fa-codepen" aria-hidden="true"></span></a>
-					<a href="www.linkedin.com/in/mrtag08" target="_blank" alt="LinkedIn profile"><span class="fa fa-linkedin" aria-hidden="true"></i></a>
-					<a href="https://github.com/TAGISWILD" target="_blank" alt="GitHub profile"><span class="fa fa-github" aria-hidden="true"></span></a>
-				</div>
-				<p id="copyright">Atharva Chauhan 2024</p>
-			</div>
-			<!-- end row contact -->
-		</div>
-		<!-- end container footer section -->
-	</footer>
-	<!-- end footer -->
-</body>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-<script src='https://shvvffle.github.io/js/jquery.easing.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script><script  src="./script.js"></script>
+  <!-- Mobile Navigation -->
+  <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 lg:hidden bg-white border border-gray-200 rounded-full px-4 py-2 shadow-lg" aria-label="Mobile navigation">
+    <div class="flex gap-4">
+      <button data-target="#hero" aria-label="Hero" class="haptic-feedback touch-target w-8 h-8 rounded-full bg-gray-200 hover:bg-black transition-all duration-300 active:scale-95 touch-manipulation" aria-current="true"></button>
+      <button data-target="#about" aria-label="About" class="haptic-feedback touch-target w-8 h-8 rounded-full bg-gray-200 hover:bg-black transition-all duration-300 active:scale-95 touch-manipulation"></button>
+      <button data-target="#skills" aria-label="Skills" class="haptic-feedback touch-target w-8 h-8 rounded-full bg-gray-200 hover:bg-black transition-all duration-300 active:scale-95 touch-manipulation"></button>
+      <button data-target="#projects" aria-label="Projects" class="haptic-feedback touch-target w-8 h-8 rounded-full bg-gray-200 hover:bg-black transition-all duration-300 active:scale-95 touch-manipulation"></button>
+      <button data-target="#contact" aria-label="Contact" class="haptic-feedback touch-target w-8 h-8 rounded-full bg-gray-200 hover:bg-black transition-all duration-300 active:scale-95 touch-manipulation"></button>
+    </div>
+  </nav>
 
+  <!-- Hero Section -->
+  <header id="hero" class="min-h-screen flex items-center justify-center relative bg-white overflow-hidden">
+    <!-- Minimal Background Pattern -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-full opacity-5">
+        <div class="absolute top-1/4 left-1/4 w-px h-32 bg-black transform rotate-45"></div>
+        <div class="absolute top-1/3 right-1/4 w-px h-24 bg-black transform -rotate-45"></div>
+        <div class="absolute bottom-1/4 left-1/3 w-px h-20 bg-black transform rotate-12"></div>
+      </div>
+    </div>
+    
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <!-- Profile Image -->
+      <div class="mb-12 relative inline-block">
+        <div class="w-28 h-28 md:w-32 md:h-32 rounded-full border-2 border-black p-1">
+          <img src="./photo.jpg" alt="Atharva Chauhan" class="w-full h-full rounded-full object-cover grayscale">
+        </div>
+      </div>
+
+      <!-- Main Heading -->
+      <h1 class="font-display text-4xl md:text-6xl font-light mb-8 text-black leading-tight tracking-tight">
+        Atharva Chauhan
+      </h1>
+      
+      <!-- Tagline -->
+      <div class="mb-8">
+        <span class="font-mono text-gray-600 text-sm uppercase tracking-widest">
+          Backend Developer
+        </span>
+      </div>
+
+      <!-- Bio -->
+      <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
+        I build robust backend systems, IoT solutions, and scalable products.<br>
+        <span class="text-black font-normal">Simple. Clean. Effective.</span>
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="#contact" class="haptic-btn haptic-feedback touch-target bg-black text-white px-8 py-4 font-mono text-sm uppercase tracking-wider hover:bg-gray-800 transition-all duration-300 active:scale-95 touch-manipulation">
+          Contact
+        </a>
+        <a href="#projects" class="haptic-btn haptic-feedback touch-target border border-black text-black px-8 py-4 font-mono text-sm uppercase tracking-wider hover:bg-black hover:text-white transition-all duration-300 active:scale-95 touch-manipulation">
+          Work
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="py-32 bg-gray-50" tabindex="-1">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h2 class="font-display text-3xl md:text-4xl font-light text-black mb-8 tracking-tight">
+          About
+        </h2>
+        <div class="w-16 h-px bg-black mx-auto mb-8"></div>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
+          I bridge software, hardware, and business through clean, efficient solutions.
+        </p>
+      </div>
+
+      <div class="grid gap-16">
+        <div class="grid md:grid-cols-3 gap-12">
+          <div class="text-center">
+            <h3 class="font-mono text-black mb-4 uppercase tracking-wider text-sm">
+              Technical
+            </h3>
+            <p class="text-gray-600 leading-relaxed font-light">
+              Proficient in <strong>C, Java, Python</strong> with backend frameworks like <strong>Spring Boot, Flask, PostgreSQL</strong>.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <h3 class="font-mono text-black mb-4 uppercase tracking-wider text-sm">
+              Hardware
+            </h3>
+            <p class="text-gray-600 leading-relaxed font-light">
+              Specialized in <strong>IoT and embedded systems</strong> with ESP32, BLE integration, and cloud connectivity.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <h3 class="font-mono text-black mb-4 uppercase tracking-wider text-sm">
+              Business
+            </h3>
+            <p class="text-gray-600 leading-relaxed font-light">
+              System design and scalable product development under <strong>EthicCode Technologies</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="text-center space-y-6">
+          <div class="max-w-2xl mx-auto">
+            <p class="text-gray-600 font-light leading-relaxed mb-8">
+              Self-taught developer with real-world experience. Founded EthicCode Technologies, 
+              currently scaling Conexion and developing new IoT solutions.
+            </p>
+            <div class="w-24 h-px bg-gray-300 mx-auto"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-32 bg-white" tabindex="-1">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h2 class="font-display text-3xl md:text-4xl font-light text-black mb-8 tracking-tight">
+          Skills
+        </h2>
+        <div class="w-16 h-px bg-black mx-auto"></div>
+      </div>
+
+      <div class="space-y-12">
+        <div class="text-center">
+          <h3 class="font-mono text-black mb-6 uppercase tracking-wider text-sm">Languages</h3>
+          <div class="flex flex-wrap justify-center gap-4">
+            <span class="font-mono text-gray-600 text-sm">Java</span>
+            <span class="text-gray-300">•</span>
+            <span class="font-mono text-gray-600 text-sm">Python</span>
+            <span class="text-gray-300">•</span>
+            <span class="font-mono text-gray-600 text-sm">C</span>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <h3 class="font-mono text-black mb-6 uppercase tracking-wider text-sm">Backend</h3>
+          <div class="flex flex-wrap justify-center gap-4">
+            <span class="font-mono text-gray-600 text-sm">Spring Boot</span>
+            <span class="text-gray-300">•</span>
+            <span class="font-mono text-gray-600 text-sm">Flask</span>
+            <span class="text-gray-300">•</span>
+            <span class="font-mono text-gray-600 text-sm">PostgreSQL</span>
+            <span class="text-gray-300">•</span>
+            <span class="font-mono text-gray-600 text-sm">MongoDB</span>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <h3 class="font-mono text-black mb-6 uppercase tracking-wider text-sm">Hardware</h3>
+          <div class="flex flex-wrap justify-center gap-4">
+            <span class="font-mono text-gray-600 text-sm">ESP32</span>
+            <span class="text-gray-300">•</span>
+            <span class="font-mono text-gray-600 text-sm">BLE</span>
+            <span class="text-gray-300">•</span>
+            <span class="font-mono text-gray-600 text-sm">IoT</span>
+            <span class="text-gray-300">•</span>
+            <span class="font-mono text-gray-600 text-sm">AWS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-32 bg-gray-50" tabindex="-1">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h2 class="font-display text-3xl md:text-4xl font-light text-black mb-8 tracking-tight">
+          Work
+        </h2>
+        <div class="w-16 h-px bg-black mx-auto"></div>
+      </div>
+
+      <div id="projects-container" class="space-y-16">
+        <!-- Projects will be loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <footer id="contact" class="py-32 bg-black text-white" tabindex="-1">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="font-display text-3xl md:text-4xl font-light mb-8 tracking-tight">
+        Contact
+      </h2>
+      <div class="w-16 h-px bg-white mx-auto mb-16"></div>
+
+      <div class="mb-16">
+        <a href="mailto:mrtag08@gmail.com" class="font-mono text-lg text-white hover:text-gray-300 transition-colors duration-300">
+          mrtag08@gmail.com
+        </a>
+      </div>
+
+      <!-- Social Links -->
+      <div class="flex justify-center gap-12 mb-16 text-sm font-mono uppercase tracking-wider">
+        <a href="https://github.com/MRTAG08" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors duration-300">
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/mrtag08" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors duration-300">
+          LinkedIn
+        </a>
+        <a href="./Instagram/" class="text-gray-400 hover:text-white transition-colors duration-300">
+          Instagram
+        </a>
+        <a href="./Twitter/" class="text-gray-400 hover:text-white transition-colors duration-300">
+          Twitter
+        </a>
+        <a href="./YouTube/" class="text-gray-400 hover:text-white transition-colors duration-300">
+          YouTube
+        </a>
+      </div>
+
+      <!-- Footer -->
+      <div class="border-t border-gray-800 pt-8">
+        <p class="text-gray-500 font-mono text-sm">
+          © <span id="year"></span> Atharva Chauhan
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js" defer></script>
+
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+    }
+
+    /* Mobile optimizations */
+    .touch-device * {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    .touch-device a, .touch-device button, .touch-device [role="button"] {
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    
+    .active\:scale-98:active {
+      transform: scale(0.98);
+      transition: transform 0.1s ease-out;
+    }
+    
+    .active\:scale-95:active {
+      transform: scale(0.95);
+      transition: transform 0.1s ease-out;
+    }
+    
+    /* Enhanced haptic feedback visual cues */
+    .haptic-feedback {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .haptic-feedback::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.1);
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .haptic-feedback:active::after {
+      width: 200px;
+      height: 200px;
+      opacity: 1;
+    }
+    
+    /* Improved touch targets */
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    /* Smooth mobile navigation */
+    nav[aria-label="Mobile navigation"] {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Better mobile touch targets */
+    @media (max-width: 768px) {
+      .haptic-btn {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .card {
+        margin-bottom: 1rem;
+      }
+      
+      /* Larger profile image on mobile */
+      .hero .w-28 {
+        width: 8rem;
+        height: 8rem;
+      }
+      
+      /* Better spacing on mobile */
+      .py-32 {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+      
+      /* Mobile-friendly text sizes */
+      .text-4xl {
+        font-size: 2.25rem;
+      }
+      
+      .text-6xl {
+        font-size: 3rem;
+      }
+    }
+    
+    /* Prevent zoom on input focus (mobile) */
+    @media screen and (max-width: 768px) {
+      input, textarea, select {
+        font-size: 16px !important;
+      }
+    }
+  </style>
 </body>
 </html>

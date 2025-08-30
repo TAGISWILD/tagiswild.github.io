@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title id="page-title">Project - Atharva Chauhan</title>
+  <meta name="description" id="page-desc" content="Project details - Atharva Chauhan">
+  <link rel="icon" href="./icon.ico" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+            'mono': ['JetBrains Mono', 'monospace'],
+            'display': ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            'primary': {
+              50: '#f8f9fa',
+              100: '#f1f3f4',
+              200: '#e8eaed',
+              300: '#dadce0',
+              400: '#bdc1c6',
+              500: '#9aa0a6',
+              600: '#80868b',
+              700: '#5f6368',
+              800: '#3c4043',
+              900: '#202124',
+            },
+            'accent': {
+              500: '#000000',
+              600: '#1a1a1a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-6 py-6">
+      <div class="flex items-center justify-between">
+        <a href="./index_new.html" class="font-display font-light text-xl text-black hover:text-gray-600 transition-colors tracking-tight">
+          Atharva Chauhan
+        </a>
+        <a href="./index_new.html#projects" class="font-mono text-sm text-gray-600 hover:text-black transition-colors uppercase tracking-wider">
+          ← Back
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Loading State -->
+  <div id="loading" class="min-h-screen flex items-center justify-center">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
+      <p class="text-slate-600">Loading project details...</p>
+    </div>
+  </div>
+
+  <!-- Project Content -->
+  <div id="project-content" class="hidden">
+    <!-- Hero Section -->
+    <section class="py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div class="lg:order-first">
+            <img id="project-image" src="" alt="" class="w-full grayscale border border-gray-200">
+          </div>
+          <div>
+            <div class="flex items-center gap-6 mb-8">
+              <span id="project-type" class="text-xs font-mono text-gray-500 uppercase tracking-wider"></span>
+              <span id="project-status" class="px-2 py-1 bg-black text-white text-xs font-mono uppercase tracking-wider"></span>
+            </div>
+            <h1 id="project-title" class="font-display text-3xl md:text-4xl font-light text-black mb-6 tracking-tight leading-tight"></h1>
+            <p id="project-desc" class="text-lg text-gray-600 mb-8 leading-relaxed font-light"></p>
+            <div class="flex flex-wrap gap-4">
+              <a id="project-link" href="#" class="hidden bg-black text-white px-6 py-3 font-mono text-sm uppercase tracking-wider hover:bg-gray-800 transition-colors">
+                View Project
+              </a>
+              <a id="github-link" href="#" class="hidden border border-black text-black px-6 py-3 font-mono text-sm uppercase tracking-wider hover:bg-black hover:text-white transition-all">
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Details Section -->
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <div class="bg-slate-50 p-6 rounded-xl">
+            <h3 class="font-bold text-slate-800 mb-2">Year</h3>
+            <p id="project-year" class="text-slate-600"></p>
+          </div>
+          <div class="bg-slate-50 p-6 rounded-xl">
+            <h3 class="font-bold text-slate-800 mb-2">Status</h3>
+            <p id="project-status-detail" class="text-slate-600"></p>
+          </div>
+          <div class="bg-slate-50 p-6 rounded-xl">
+            <h3 class="font-bold text-slate-800 mb-2">Category</h3>
+            <p id="project-category" class="text-slate-600"></p>
+          </div>
+        </div>
+
+        <div class="prose prose-lg max-w-none">
+          <h2 class="font-display text-3xl font-bold text-slate-800 mb-6">About This Project</h2>
+          <div id="project-long-desc" class="text-slate-700 leading-relaxed mb-8"></div>
+          
+          <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Technologies Used</h3>
+          <div id="tech-stack" class="flex flex-wrap gap-3 mb-8"></div>
+
+          <div id="collaboration-section" class="hidden">
+            <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Collaboration</h3>
+            <p id="collaboration-details" class="text-slate-700 leading-relaxed mb-8"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Projects -->
+    <section class="py-16 bg-slate-50">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="font-display text-3xl font-bold text-slate-800 mb-8 text-center">Other Projects</h2>
+        <div id="related-projects" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Error State -->
+  <div id="error-state" class="hidden min-h-screen flex items-center justify-center">
+    <div class="text-center">
+      <div class="text-6xl mb-4">😕</div>
+      <h1 class="text-2xl font-bold text-slate-800 mb-4">Project Not Found</h1>
+      <p class="text-slate-600 mb-8">The project you're looking for doesn't exist or has been moved.</p>
+      <a href="./index_new.html" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+        Go Back Home
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Enhanced haptic feedback helper (same as main site)
+    function triggerHaptic(type = 'light') {
+      if ('vibrate' in navigator) {
+        const patterns = {
+          light: 5,
+          medium: 15,
+          heavy: 25,
+          double: [10, 50, 10],
+          success: [10, 30, 10, 30, 10],
+          error: [50, 50, 50],
+          scroll: 3,
+          hover: 2,
+          navigation: [5, 10, 5],
+          card: 8,
+          typing: 1
+        };
+        navigator.vibrate(patterns[type] || patterns.light);
+      }
+      
+      if (window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') {
+        if (navigator.vibrate) {
+          const iosPatterns = {
+            light: 5,
+            medium: 15,
+            heavy: 30,
+            scroll: 2,
+            hover: 1
+          };
+          navigator.vibrate(iosPatterns[type] || iosPatterns.light);
+        }
+      }
+    }
+
+    // Add universal haptic feedback to project page
+    function addProjectPageHaptics() {
+      // All clickable elements
+      document.addEventListener('click', (e) => {
+        const target = e.target.closest('a, button, [role="button"]');
+        if (target) {
+          if (target.matches('a[href*="mailto:"]')) {
+            triggerHaptic('success');
+          } else if (target.matches('a[href*="github"]')) {
+            triggerHaptic('medium');
+          } else if (target.matches('a[href*="project.html"]')) {
+            triggerHaptic('navigation');
+          } else {
+            triggerHaptic('medium');
+          }
+        }
+      }, { passive: true });
+
+      // Touch feedback
+      document.addEventListener('touchstart', (e) => {
+        const target = e.target.closest('a, button, [role="button"]');
+        if (target) {
+          triggerHaptic('light');
+        }
+      }, { passive: true });
+
+      // Image interactions
+      document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('load', () => triggerHaptic('light'), { once: true });
+        img.addEventListener('click', () => triggerHaptic('card'));
+      });
+
+      // Scroll feedback
+      let scrollTimeout;
+      let lastScrollY = window.scrollY;
+      
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+        
+        if (scrollDelta > 50) {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            triggerHaptic('scroll');
+          }, 100);
+          lastScrollY = currentScrollY;
+        }
+      }, { passive: true });
+    }
+
+    // Get project ID from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectId = urlParams.get('id');
+
+    // Load project data
+    async function loadProject() {
+      try {
+        const response = await fetch('./projects.json');
+        const data = await response.json();
+        
+        // Find the project
+        let project = null;
+        let allProjects = [];
+        
+        // Search in all project categories
+        if (data.featured) {
+          allProjects = allProjects.concat(data.featured);
+        }
+        if (data.projects) {
+          allProjects = allProjects.concat(data.projects);
+        }
+        
+        // Find project by ID (using title as ID for simplicity)
+        project = allProjects.find(p => 
+          p.title.toLowerCase().replace(/\s+/g, '-') === projectId
+        );
+
+        if (!project) {
+          showError();
+          return;
+        }
+
+        // Populate project details
+        populateProject(project, allProjects.filter(p => p !== project));
+        
+      } catch (error) {
+        console.error('Error loading project:', error);
+        showError();
+      }
+    }
+
+    function populateProject(project, otherProjects) {
+      // Update page meta
+      document.getElementById('page-title').textContent = `${project.title} - Atharva Chauhan`;
+      document.getElementById('page-desc').setAttribute('content', project.desc);
+
+      // Populate content
+      document.getElementById('project-title').textContent = project.title;
+      document.getElementById('project-desc').textContent = project.desc;
+      document.getElementById('project-long-desc').textContent = project.longDesc || project.desc;
+      document.getElementById('project-type').textContent = project.type;
+      document.getElementById('project-year').textContent = project.year;
+      document.getElementById('project-status-detail').textContent = project.status;
+      document.getElementById('project-category').textContent = project.type;
+      document.getElementById('project-image').src = project.img;
+      document.getElementById('project-image').alt = project.title;
+
+      // Status badge
+      const statusEl = document.getElementById('project-status');
+      statusEl.textContent = project.status;
+      const statusColor = project.status === 'Live' ? 'bg-green-500 text-white' : 
+                         project.status === 'In Development' ? 'bg-yellow-500 text-white' : 
+                         'bg-blue-500 text-white';
+      statusEl.className = `px-3 py-1 rounded-full text-sm font-semibold ${statusColor}`;
+
+      // Links
+      if (project.href && project.href !== '#') {
+        const linkEl = document.getElementById('project-link');
+        linkEl.href = project.href;
+        linkEl.classList.remove('hidden');
+      }
+      if (project.github && project.github !== '') {
+        const githubEl = document.getElementById('github-link');
+        githubEl.href = project.github;
+        githubEl.classList.remove('hidden');
+      }
+
+      // Tech stack
+      const techEl = document.getElementById('tech-stack');
+      project.tech.forEach(tech => {
+        const span = document.createElement('span');
+        span.className = 'px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-mono';
+        span.textContent = tech;
+        techEl.appendChild(span);
+      });
+
+      // Collaboration (for LibMan)
+      if (project.title === 'LibMan') {
+        document.getElementById('collaboration-section').classList.remove('hidden');
+        document.getElementById('collaboration-details').textContent = 
+          'Collaborated with Chandrayan Paul on this comprehensive library management system. I focused on the deep backend architecture, deployment infrastructure, and release management system.';
+      }
+
+      // Related projects
+      const relatedEl = document.getElementById('related-projects');
+      otherProjects.slice(0, 3).forEach(p => {
+        const projectId = p.title.toLowerCase().replace(/\s+/g, '-');
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300';
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.title}" class="w-full h-32 object-cover">
+          <div class="p-4">
+            <h3 class="font-bold text-slate-800 mb-2">${p.title}</h3>
+            <p class="text-sm text-slate-600 mb-3">${p.desc.substring(0, 100)}...</p>
+            <a href="./project.html?id=${projectId}" class="text-primary-600 hover:text-primary-700 font-semibold text-sm">
+              View Project →
+            </a>
+          </div>
+        `;
+        relatedEl.appendChild(card);
+      });
+
+      // Show content, hide loading
+      document.getElementById('loading').classList.add('hidden');
+      document.getElementById('project-content').classList.remove('hidden');
+    }
+
+    function showError() {
+      document.getElementById('loading').classList.add('hidden');
+      document.getElementById('error-state').classList.remove('hidden');
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize haptic feedback first
+      addProjectPageHaptics();
+      
+      if (!projectId) {
+        showError();
+        triggerHaptic('error');
+      } else {
+        loadProject();
+        triggerHaptic('light');
+      }
+      
+      // Page load completion haptic
+      setTimeout(() => {
+        triggerHaptic('success');
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

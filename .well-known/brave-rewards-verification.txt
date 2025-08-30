@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: atharvachauhan.me
-Token: ad092a66943185e7febe9af5adedad3a9be5de3d0dde2f107357ced0d9eab928

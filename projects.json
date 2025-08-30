@@ -1,0 +1,68 @@
+{
+  "featured": [
+    {
+      "title": "Conexion",
+      "desc": "A comprehensive QR-based OEM & inventory management system that digitizes welding machine controller maintenance and sales records. Built as a standalone product deployed at web.conexion.in, already tested with 1000+ controllers.",
+      "longDesc": "Conexion is my flagship SaaS product that transforms how businesses track and manage their equipment. It features QR code generation, inventory tracking, maintenance scheduling, and automated reporting. The system handles everything from entry editing to printing challans and emailing product details to clients.",
+      "href": "https://conexion.in",
+      "github": "",
+      "img": "./AILo7yTQrcEhd.jpg",
+      "tech": ["Node.js", "PostgreSQL", "QR Codes", "AWS", "REST APIs"],
+      "status": "Live",
+      "type": "SaaS Product",
+      "year": "2024-2025",
+      "featured": true
+    },
+    {
+      "title": "Proxy Prevention Attendance System",
+      "desc": "Advanced attendance system using Spring Boot, PostgreSQL, ESP32 BLE beacons, and facial recognition to prevent proxy attendance in educational institutions.",
+      "longDesc": "A comprehensive solution that combines hardware and software to solve the proxy attendance problem. Uses ESP32 BLE beacons for location verification, facial recognition for identity confirmation, and a robust Spring Boot backend with PostgreSQL for data management.",
+      "href": "#",
+      "github": "",
+      "img": "./XFU6PPoN358mq.jpg",
+      "tech": ["Spring Boot", "PostgreSQL", "ESP32", "BLE", "Facial Recognition", "Android"],
+      "status": "In Development",
+      "type": "IoT System",
+      "year": "2024",
+      "featured": true
+    }
+  ],
+  "projects": [
+    {
+      "title": "LibMan",
+      "desc": "An Institute adapted Library Attendance and Management System built on MERN Stack with Chandrayan Paul, deployed on Heroku.",
+      "longDesc": "Developed a comprehensive library management system for SIES GST with deep backend architecture. Created distribution channels for private alpha, public beta, and public release versions. Handled deployment on Heroku and integrated AWS S3 for document storage.",
+      "href": "#",
+      "github": "",
+      "img": "./gafhgyaegfyadl.jpg",
+      "tech": ["MongoDB", "Express.js", "Node.js", "Heroku", "AWS S3"],
+      "status": "Completed",
+      "type": "For SIES GST",
+      "year": "2024"
+    },
+    {
+      "title": "Welding Machine IoT Integration",
+      "desc": "ESP32-based system for real-time welding machine event logging with secure cloud upload to Amazon S3.",
+      "longDesc": "Developed IoT integration for welding machines using ESP32 microcontrollers to log real-time events and upload data securely to servers. Features Wi-Fi restricted authentication and robust data handling.",
+      "href": "#",
+      "github": "",
+      "img": "./9qPE1d5kLd4hd.jpg",
+      "tech": ["ESP32", "C++", "AWS S3", "IoT", "WiFi"],
+      "status": "Completed",
+      "type": "IoT Project",
+      "year": "2023"
+    }
+  ],
+  "companies": [
+    {
+      "title": "EthicCode Technologies",
+      "desc": "My main software development company focusing on ethical practices and innovative solutions.",
+      "longDesc": "Founded EthicCode Technologies as a leading software development company that prioritizes ethical practices. We deliver high-quality, user-friendly, and innovative software solutions with a strong ethical code, serving diverse clientele across various industries.",
+      "href": "#",
+      "role": "Founder & CEO",
+      "year": "2023 - Present",
+      "type": "Company"
+    }
+  ]
+}
+
