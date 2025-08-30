@@ -5,7 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title id="page-title">Project - Atharva Chauhan</title>
   <meta name="description" id="page-desc" content="Project details - Atharva Chauhan">
-  <link rel="icon" href="./icon.ico" type="image/x-icon">
+  <meta name="keywords" content="Atharva Chauhan, Backend Developer, Software Engineer, Projects, Portfolio">
+  <meta name="author" content="Atharva Chauhan">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="./photo.jpg">
+  <link rel="apple-touch-icon" href="./photo.jpg">
+  <link rel="shortcut icon" type="image/jpeg" href="./photo.jpg">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tagiswild.github.io/">
+  <meta property="og:title" id="og-title" content="Project - Atharva Chauhan">
+  <meta property="og:description" id="og-desc" content="Project details - Atharva Chauhan">
+  <meta property="og:image" content="https://tagiswild.github.io/photo.jpg">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="twitter-title" content="Project - Atharva Chauhan">
+  <meta name="twitter:description" id="twitter-desc" content="Project details - Atharva Chauhan">
+  <meta name="twitter:image" content="https://tagiswild.github.io/photo.jpg">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="https://tagiswild.github.io/">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -265,7 +289,20 @@
     // Load project data
     async function loadProject() {
       try {
-        const response = await fetch('./projects.json');
+        // Add timeout to fetch request
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+        
+        const response = await fetch('./projects.json', {
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
         
         // Find the project
@@ -286,6 +323,7 @@
         );
 
         if (!project) {
+          console.warn('Project not found:', projectId);
           showError();
           return;
         }
@@ -295,7 +333,16 @@
         
       } catch (error) {
         console.error('Error loading project:', error);
+        
+        // Show error state
         showError();
+        
+        // Auto-redirect after 3 seconds if it's a network error
+        if (error.name === 'TypeError' || error.message.includes('fetch') || error.name === 'AbortError') {
+          setTimeout(() => {
+            window.location.href = './index.html#projects';
+          }, 3000);
+        }
       }
     }
 
@@ -378,6 +425,15 @@
     function showError() {
       document.getElementById('loading').classList.add('hidden');
       document.getElementById('error-state').classList.remove('hidden');
+      
+      // Add haptic feedback for error
+      triggerHaptic('error');
+    }
+    
+    function showLoading() {
+      document.getElementById('loading').classList.remove('hidden');
+      document.getElementById('error-state').classList.add('hidden');
+      document.getElementById('project-content').classList.add('hidden');
     }
 
     // Creative transition back to main page
@@ -398,6 +454,23 @@
       }, 500);
     }
 
+    // Handle browser back button
+    function handleBrowserBack() {
+      // Check if we can go back in history
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        // Fallback: redirect to home page
+        window.location.href = './index.html#projects';
+      }
+    }
+
+    // Listen for browser back button
+    window.addEventListener('popstate', (event) => {
+      // Handle the back navigation
+      handleBrowserBack();
+    });
+
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       // Initialize haptic feedback first
@@ -410,10 +483,12 @@
         smoothTransitionBack();
       });
       
+      // Add fallback for direct navigation
       if (!projectId) {
         showError();
         triggerHaptic('error');
       } else {
+        showLoading();
         loadProject();
         triggerHaptic('light');
       }
@@ -422,6 +497,17 @@
       setTimeout(() => {
         triggerHaptic('success');
       }, 1000);
+      
+      // Add error handling for failed project loads
+      window.addEventListener('error', (e) => {
+        console.error('Page error:', e);
+        // Fallback to home page if there's a critical error
+        if (e.error && e.error.message.includes('fetch')) {
+          setTimeout(() => {
+            window.location.href = './index.html#projects';
+          }, 2000);
+        }
+      });
     });
   </script>
 </body>
