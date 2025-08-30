@@ -131,6 +131,7 @@ function addUniversalHapticFeedback() {
       } else if (target.matches('a[href^="mailto:"]')) {
         triggerHaptic('success');
 		} else {
+
         triggerHaptic('medium');
       }
     }
@@ -198,6 +199,7 @@ function addUniversalHapticFeedback() {
       longPressTimeout = setTimeout(() => {
         triggerHaptic('heavy');
 		}, 500);
+
     }
   }, { passive: true });
 
@@ -293,7 +295,7 @@ function renderProjects(data) {
     html += `
       <div class="mb-20">
         <h3 class="text-2xl font-bold text-slate-800 mb-8 flex items-center">
-          <span class="mr-3">🔨</span> Other Projects
+          <span class="mr-3">•</span> Other Projects
         </h3>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
     `;
@@ -310,7 +312,7 @@ function renderProjects(data) {
     html += `
       <div>
         <h3 class="text-2xl font-bold text-slate-800 mb-8 flex items-center">
-          <span class="mr-3">🏢</span> Companies & Ventures
+          <span class="mr-3">•</span> Companies & Ventures
         </h3>
         <div class="grid md:grid-cols-2 gap-8">
     `;
@@ -323,11 +325,84 @@ function renderProjects(data) {
   }
 
   container.innerHTML = html;
+  
+  // Add click handlers for project cards
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const projectId = card.dataset.projectId;
+      
+      // Trigger haptic feedback
+      triggerHaptic('card');
+      
+      // Get the image element
+      const img = card.querySelector('img');
+      
+      // On mobile, add delay to show color transition
+      if (window.innerWidth < 1024) {
+        // Remove grayscale to show color
+        img.classList.remove('grayscale');
+        img.classList.add('grayscale-0');
+        
+        // Add a subtle scale effect
+        card.style.transform = 'scale(0.98)';
+        card.style.transition = 'transform 0.2s ease';
+        
+        // Create creative transition with card morphing
+        const cardRect = card.getBoundingClientRect();
+        const morphingOverlay = document.createElement('div');
+        morphingOverlay.className = 'fixed z-50 bg-white rounded-lg shadow-2xl transition-all duration-500 ease-out';
+        morphingOverlay.style.cssText = `
+          left: ${cardRect.left}px;
+          top: ${cardRect.top}px;
+          width: ${cardRect.width}px;
+          height: ${cardRect.height}px;
+          transform: scale(1);
+          opacity: 0;
+        `;
+        document.body.appendChild(morphingOverlay);
+        
+        // Navigate after delay to show color change
+        setTimeout(() => {
+          // Morph the overlay to full screen
+          morphingOverlay.style.cssText = `
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            transform: scale(1.1);
+            opacity: 1;
+            border-radius: 0;
+          `;
+          
+          // Navigate after morphing animation
+          setTimeout(() => {
+            window.location.href = `./project.html?id=${projectId}`;
+          }, 500);
+        }, 400); // 400ms delay for mobile users
+      } else {
+        // Desktop: creative slide transition
+        const slideOverlay = document.createElement('div');
+        slideOverlay.className = 'fixed inset-0 z-50 bg-gradient-to-br from-gray-50 to-white transform translate-x-full transition-transform duration-500 ease-out';
+        document.body.appendChild(slideOverlay);
+        
+        // Slide in from right
+        setTimeout(() => {
+          slideOverlay.style.transform = 'translateX(0)';
+          
+          // Navigate after slide animation
+          setTimeout(() => {
+            window.location.href = `./project.html?id=${projectId}`;
+          }, 500);
+        }, 10);
+      }
+    });
+  });
 }
 
 function createFeaturedProjectCard(project) {
   return `
-    <div class="card bg-white border border-gray-200 hover:border-black hover:shadow-lg transition-all duration-300 group cursor-pointer touch-manipulation active:scale-98">
+    <div class="card bg-white border border-gray-200 hover:border-black hover:shadow-lg transition-all duration-300 group cursor-pointer touch-manipulation active:scale-98 project-card" data-project-id="${project.title.toLowerCase().replace(/\s+/g, '-')}">
       <div class="relative overflow-hidden">
         <img src="${project.img}" alt="${project.title}" class="w-full h-48 object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
         <div class="absolute top-4 right-4">
@@ -344,7 +419,7 @@ function createFeaturedProjectCard(project) {
           <span class="text-xs font-mono text-gray-500">${project.year}</span>
         </div>
         <h4 class="text-xl font-light text-black mb-4 group-hover:text-gray-600 transition-colors">
-          <a href="./project.html?id=${project.title.toLowerCase().replace(/\s+/g, '-')}" class="haptic-btn">${project.title}</a>
+          ${project.title}
         </h4>
         <p class="text-gray-600 mb-6 leading-relaxed font-light">${project.desc.substring(0, 120)}...</p>
         <div class="flex flex-wrap gap-2">
@@ -359,7 +434,7 @@ function createFeaturedProjectCard(project) {
 
 function createRegularProjectCard(project) {
   return `
-    <div class="card bg-white border border-gray-200 hover:border-black hover:shadow-md transition-all duration-300 group cursor-pointer touch-manipulation active:scale-98">
+    <div class="card bg-white border border-gray-200 hover:border-black hover:shadow-md transition-all duration-300 group cursor-pointer touch-manipulation active:scale-98 project-card" data-project-id="${project.title.toLowerCase().replace(/\s+/g, '-')}">
       <div class="relative overflow-hidden">
         <img src="${project.img}" alt="${project.title}" class="w-full h-32 object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
         <div class="absolute top-2 right-2">
@@ -374,7 +449,7 @@ function createRegularProjectCard(project) {
           <span class="text-xs font-mono text-gray-400">${project.year}</span>
         </div>
         <h4 class="font-light text-black mb-3 group-hover:text-gray-600 transition-colors">
-          <a href="./project.html?id=${project.title.toLowerCase().replace(/\s+/g, '-')}" class="haptic-btn">${project.title}</a>
+          ${project.title}
         </h4>
         <p class="text-sm text-gray-600 mb-4 font-light leading-relaxed">${project.desc.substring(0, 100)}...</p>
         <div class="text-xs font-mono text-gray-400">
@@ -435,6 +510,7 @@ function setupNavigation() {
 				}
 			});
 	});
+
 
   // Enhanced scroll spy for both navigation systems
   const observer = new IntersectionObserver((entries) => {

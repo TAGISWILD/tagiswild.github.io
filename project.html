@@ -76,7 +76,7 @@
         <a href="./index.html" class="font-display font-light text-xl text-black hover:text-gray-600 transition-colors tracking-tight">
           Atharva Chauhan
         </a>
-        <a href="./index.html#projects" class="font-mono text-sm text-gray-600 hover:text-black transition-colors uppercase tracking-wider">
+        <a href="./index.html#projects" class="font-mono text-sm text-gray-600 hover:text-black transition-colors uppercase tracking-wider back-link">
           ← Back
         </a>
       </div>
@@ -98,7 +98,7 @@
       <div class="max-w-6xl mx-auto px-6">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           <div class="lg:order-first">
-            <img id="project-image" src="" alt="" class="w-full grayscale border border-gray-200">
+            <img id="project-image" src="" alt="" class="w-full border border-gray-200">
           </div>
           <div>
             <div class="flex items-center gap-6 mb-8">
@@ -168,7 +168,7 @@
       <div class="text-6xl mb-4">😕</div>
       <h1 class="text-2xl font-bold text-slate-800 mb-4">Project Not Found</h1>
       <p class="text-slate-600 mb-8">The project you're looking for doesn't exist or has been moved.</p>
-      <a href="./index_new.html" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+      <a href="./index.html" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
         Go Back Home
       </a>
     </div>
@@ -380,10 +380,35 @@
       document.getElementById('error-state').classList.remove('hidden');
     }
 
+    // Creative transition back to main page
+    function smoothTransitionBack() {
+      // Create slide transition
+      const slideOverlay = document.createElement('div');
+      slideOverlay.className = 'fixed inset-0 z-50 bg-gradient-to-br from-gray-50 to-white transform -translate-x-full transition-transform duration-500 ease-out';
+      document.body.appendChild(slideOverlay);
+      
+      // Slide in from left
+      setTimeout(() => {
+        slideOverlay.style.transform = 'translateX(0)';
+      }, 10);
+      
+      // Navigate back after slide animation
+      setTimeout(() => {
+        window.location.href = './index.html#projects';
+      }, 500);
+    }
+
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       // Initialize haptic feedback first
       addProjectPageHaptics();
+      
+      // Add smooth transition for back link
+      document.querySelector('.back-link').addEventListener('click', (e) => {
+        e.preventDefault();
+        triggerHaptic('navigation');
+        smoothTransitionBack();
+      });
       
       if (!projectId) {
         showError();

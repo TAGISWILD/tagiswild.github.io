@@ -14,6 +14,19 @@
       "featured": true
     },
     {
+      "title": "LibMan",
+      "desc": "An Institute adapted Library Attendance and Management System built on MERN Stack with Chandrayan Paul, deployed on Heroku.",
+      "longDesc": "Developed a comprehensive library management system for SIES GST with deep backend architecture. Created distribution channels for private alpha, public beta, and public release versions. Handled deployment on Heroku and integrated AWS S3 for document storage.",
+      "href": "https://library-sies-92fbc1e81669.herokuapp.com",
+      "github": "",
+      "img": "./imgs/libman.jpg",
+      "tech": ["MongoDB", "Express.js", "Node.js", "Heroku", "AWS S3"],
+      "status": "Completed",
+      "type": "For SIES GST | With Chandrayan Paul",
+      "year": "2025",
+      "featured": true
+    },
+    {
       "title": "Proxy Prevention Attendance System",
       "desc": "Advanced attendance system using Spring Boot, PostgreSQL, ESP32 BLE beacons, and facial recognition to prevent proxy attendance in educational institutions.",
       "longDesc": "A comprehensive solution that combines hardware and software to solve the proxy attendance problem. Uses ESP32 BLE beacons for location verification, facial recognition for identity confirmation, and a robust Spring Boot backend with PostgreSQL for data management.",
@@ -25,20 +38,7 @@
       "type": "IoT System",
       "year": "2024",
       "featured": true
-    },
-    {
-      "title": "LibMan",
-      "desc": "An Institute adapted Library Attendance and Management System built on MERN Stack with Chandrayan Paul, deployed on Heroku.",
-      "longDesc": "Developed a comprehensive library management system for SIES GST with deep backend architecture. Created distribution channels for private alpha, public beta, and public release versions. Handled deployment on Heroku and integrated AWS S3 for document storage.",
-      "href": "#",
-      "github": "",
-      "img": "./imgs/libman.jpg",
-      "tech": ["MongoDB", "Express.js", "Node.js", "Heroku", "AWS S3"],
-      "status": "Completed",
-      "type": "For SIES GST | With Chandrayan Paul",
-      "year": "2025",
-      "featured": true
-    }
+    } 
   ],
   "projects": [
     {
