@@ -16,7 +16,7 @@
     {
       "title": "LibMan",
       "desc": "An Institute adapted Library Attendance and Management System built on MERN Stack with Chandrayan Paul, deployed on Heroku.",
-      "longDesc": "Developed a comprehensive library management system for SIES GST with deep backend architecture. Created distribution channels for private alpha, public beta, and public release versions. Handled deployment on Heroku and integrated AWS S3 for document storage.",
+      "longDesc": "Developed a comprehensive library management system for SIES GST with deep backend architecture. Created distribution channels for private alpha, public beta, and public release versions. Handled deployment on Heroku and integrated AWS S3 for document storage. Currently this project is hosted and students and faculties of SIES GST can Sign-Up and Login to use this library management system. ",
       "href": "https://library-sies-92fbc1e81669.herokuapp.com",
       "github": "",
       "img": "./imgs/libman.jpg",
