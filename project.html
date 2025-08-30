@@ -8,6 +8,34 @@
   <link rel="icon" href="./icon.ico" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Enhanced smooth scrolling */
+    @media (prefers-reduced-motion: no-preference) {
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      a[href^="#"] {
+        scroll-behavior: smooth;
+      }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
   <script>
     tailwind.config = {
       theme: {
@@ -45,10 +73,10 @@
   <nav class="bg-white border-b border-gray-200">
     <div class="max-w-6xl mx-auto px-6 py-6">
       <div class="flex items-center justify-between">
-        <a href="./index_new.html" class="font-display font-light text-xl text-black hover:text-gray-600 transition-colors tracking-tight">
+        <a href="./index.html" class="font-display font-light text-xl text-black hover:text-gray-600 transition-colors tracking-tight">
           Atharva Chauhan
         </a>
-        <a href="./index_new.html#projects" class="font-mono text-sm text-gray-600 hover:text-black transition-colors uppercase tracking-wider">
+        <a href="./index.html#projects" class="font-mono text-sm text-gray-600 hover:text-black transition-colors uppercase tracking-wider">
           ← Back
         </a>
       </div>

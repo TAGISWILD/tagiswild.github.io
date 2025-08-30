@@ -48,35 +48,74 @@
       }
     }
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q77ERFBZ4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q77ERFBZ4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
-    gtag('config', 'G-2Q77ERFBZ4');
-  </script>
+  gtag('config', 'G-2Q77ERFBZ4');
+</script>
 </head>
-<body class="bg-white text-gray-900 font-sans overflow-x-hidden">
+<body class="bg-white text-gray-900 font-sans overflow-x-hidden" style="width: 100vw; max-width: 100vw; box-sizing: border-box;">
   <!-- Skip Link -->
   <a href="#contact" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-lg z-50">Skip to contact</a>
 
-  <!-- Side Navigation -->
-  <nav class="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-6" aria-label="Section navigation">
-    <button data-target="#hero" aria-label="Hero" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-black transition-all duration-300 hover:scale-110 active:scale-95" aria-current="true"></button>
-    <button data-target="#about" aria-label="About" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-black transition-all duration-300 hover:scale-110 active:scale-95"></button>
-    <button data-target="#skills" aria-label="Skills" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-black transition-all duration-300 hover:scale-110 active:scale-95"></button>
-    <button data-target="#projects" aria-label="Projects" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-black transition-all duration-300 hover:scale-110 active:scale-95"></button>
-    <button data-target="#contact" aria-label="Contact" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-black transition-all duration-300 hover:scale-110 active:scale-95"></button>
-  </nav>
+  <!-- Desktop Navigation - Elegant Side Dots -->
+  <nav class="desktop-nav fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-8" aria-label="Desktop navigation">
+    <div class="flex flex-col gap-4">
+      <button data-target="#hero" aria-label="Home" class="nav-dot group relative w-4 h-4 rounded-full bg-gray-300 hover:bg-black transition-all duration-500 hover:scale-125" aria-current="true">
+        <span class="nav-label absolute right-8 top-1/2 -translate-y-1/2 bg-black text-white px-3 py-1 rounded text-sm font-mono opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none">Home</span>
+      </button>
+      <button data-target="#about" aria-label="About" class="nav-dot group relative w-4 h-4 rounded-full bg-gray-300 hover:bg-black transition-all duration-500 hover:scale-125">
+        <span class="nav-label absolute right-8 top-1/2 -translate-y-1/2 bg-black text-white px-3 py-1 rounded text-sm font-mono opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none">About</span>
+      </button>
+      <button data-target="#skills" aria-label="Skills" class="nav-dot group relative w-4 h-4 rounded-full bg-gray-300 hover:bg-black transition-all duration-500 hover:scale-125">
+        <span class="nav-label absolute right-8 top-1/2 -translate-y-1/2 bg-black text-white px-3 py-1 rounded text-sm font-mono opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none">Skills</span>
+      </button>
+      <button data-target="#projects" aria-label="Projects" class="nav-dot group relative w-4 h-4 rounded-full bg-gray-300 hover:bg-black transition-all duration-500 hover:scale-125">
+        <span class="nav-label absolute right-8 top-1/2 -translate-y-1/2 bg-black text-white px-3 py-1 rounded text-sm font-mono opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none">Work</span>
+      </button>
+      <button data-target="#contact" aria-label="Contact" class="nav-dot group relative w-4 h-4 rounded-full bg-gray-300 hover:bg-black transition-all duration-500 hover:scale-125">
+        <span class="nav-label absolute right-8 top-1/2 -translate-y-1/2 bg-black text-white px-3 py-1 rounded text-sm font-mono opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none">Contact</span>
+                </button>
+			</div>
+	</nav>
 
-  <!-- Mobile Navigation -->
-  <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 lg:hidden bg-white border border-gray-200 rounded-full px-4 py-2 shadow-lg" aria-label="Mobile navigation">
-    <div class="flex gap-4">
-      <button data-target="#hero" aria-label="Hero" class="haptic-feedback touch-target w-8 h-8 rounded-full bg-gray-200 hover:bg-black transition-all duration-300 active:scale-95 touch-manipulation" aria-current="true"></button>
-      <button data-target="#about" aria-label="About" class="haptic-feedback touch-target w-8 h-8 rounded-full bg-gray-200 hover:bg-black transition-all duration-300 active:scale-95 touch-manipulation"></button>
-      <button data-target="#skills" aria-label="Skills" class="haptic-feedback touch-target w-8 h-8 rounded-full bg-gray-200 hover:bg-black transition-all duration-300 active:scale-95 touch-manipulation"></button>
-      <button data-target="#projects" aria-label="Projects" class="haptic-feedback touch-target w-8 h-8 rounded-full bg-gray-200 hover:bg-black transition-all duration-300 active:scale-95 touch-manipulation"></button>
-      <button data-target="#contact" aria-label="Contact" class="haptic-feedback touch-target w-8 h-8 rounded-full bg-gray-200 hover:bg-black transition-all duration-300 active:scale-95 touch-manipulation"></button>
-    </div>
+      <!-- Mobile Navigation - Constrained to Viewport -->
+  <nav class="mobile-nav fixed bottom-0 left-0 z-40 lg:hidden bg-white border-t border-gray-200 backdrop-blur-lg bg-white/90" 
+       style="width: 100vw; max-width: 100vw; box-sizing: border-box; overflow: hidden;" 
+       aria-label="Mobile navigation">
+    <div class="mobile-nav-container" style="width: 100%; display: flex; box-sizing: border-box;">
+      <button data-target="#hero" aria-label="Home" class="mobile-nav-btn haptic-feedback flex flex-col items-center justify-center transition-all duration-300 active:scale-95" aria-current="true" style="flex: 1; min-width: 0; overflow: hidden; box-sizing: border-box;">
+        <div class="nav-dot-container">
+          <div class="nav-dot bg-black"></div>
+						</div>
+        <span class="nav-text font-mono text-black">Home</span>
+      </button>
+      <button data-target="#about" aria-label="About" class="mobile-nav-btn haptic-feedback flex flex-col items-center justify-center transition-all duration-300 active:scale-95" style="flex: 1; min-width: 0; overflow: hidden; box-sizing: border-box;">
+        <div class="nav-dot-container">
+          <div class="nav-dot bg-gray-400"></div>
+								</div>
+        <span class="nav-text font-mono text-gray-400">About</span>
+      </button>
+      <button data-target="#skills" aria-label="Skills" class="mobile-nav-btn haptic-feedback flex flex-col items-center justify-center transition-all duration-300 active:scale-95" style="flex: 1; min-width: 0; overflow: hidden; box-sizing: border-box;">
+        <div class="nav-dot-container">
+          <div class="nav-dot bg-gray-400"></div>
+						</div>
+        <span class="nav-text font-mono text-gray-400">Skills</span>
+      </button>
+      <button data-target="#projects" aria-label="Projects" class="mobile-nav-btn haptic-feedback flex flex-col items-center justify-center transition-all duration-300 active:scale-95" style="flex: 1; min-width: 0; overflow: hidden; box-sizing: border-box;">
+        <div class="nav-dot-container">
+          <div class="nav-dot bg-gray-400"></div>
+					</div>
+        <span class="nav-text font-mono text-gray-400">Work</span>
+      </button>
+      <button data-target="#contact" aria-label="Contact" class="mobile-nav-btn haptic-feedback flex flex-col items-center justify-center transition-all duration-300 active:scale-95" style="flex: 1; min-width: 0; overflow: hidden; box-sizing: border-box;">
+        <div class="nav-dot-container">
+          <div class="nav-dot bg-gray-400"></div>
+				</div>
+        <span class="nav-text font-mono text-gray-400">Contact</span>
+      </button>
+			</div>
   </nav>
 
   <!-- Hero Section -->
@@ -87,16 +126,16 @@
         <div class="absolute top-1/4 left-1/4 w-px h-32 bg-black transform rotate-45"></div>
         <div class="absolute top-1/3 right-1/4 w-px h-24 bg-black transform -rotate-45"></div>
         <div class="absolute bottom-1/4 left-1/3 w-px h-20 bg-black transform rotate-12"></div>
-      </div>
-    </div>
+								</div>
+							</div>
     
     <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
       <!-- Profile Image -->
       <div class="mb-12 relative inline-block">
         <div class="w-28 h-28 md:w-32 md:h-32 rounded-full border-2 border-black p-1">
           <img src="./photo.jpg" alt="Atharva Chauhan" class="w-full h-full rounded-full object-cover grayscale">
-        </div>
-      </div>
+						</div>
+					</div>
 
       <!-- Main Heading -->
       <h1 class="font-display text-4xl md:text-6xl font-light mb-8 text-black leading-tight tracking-tight">
@@ -108,7 +147,7 @@
         <span class="font-mono text-gray-600 text-sm uppercase tracking-widest">
           Backend Developer
         </span>
-      </div>
+				</div>
 
       <!-- Bio -->
       <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
@@ -124,8 +163,8 @@
         <a href="#projects" class="haptic-btn haptic-feedback touch-target border border-black text-black px-8 py-4 font-mono text-sm uppercase tracking-wider hover:bg-black hover:text-white transition-all duration-300 active:scale-95 touch-manipulation">
           Work
         </a>
-      </div>
-    </div>
+						</div>
+				</div>
   </header>
 
   <!-- About Section -->
@@ -139,7 +178,7 @@
         <p class="text-lg text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
           I bridge software, hardware, and business through clean, efficient solutions.
         </p>
-      </div>
+			</div>
 
       <div class="grid gap-16">
         <div class="grid md:grid-cols-3 gap-12">
@@ -150,7 +189,7 @@
             <p class="text-gray-600 leading-relaxed font-light">
               Proficient in <strong>C, Java, Python</strong> with backend frameworks like <strong>Spring Boot, Flask, PostgreSQL</strong>.
             </p>
-          </div>
+		</div>
 
           <div class="text-center">
             <h3 class="font-mono text-black mb-4 uppercase tracking-wider text-sm">
@@ -159,7 +198,7 @@
             <p class="text-gray-600 leading-relaxed font-light">
               Specialized in <strong>IoT and embedded systems</strong> with ESP32, BLE integration, and cloud connectivity.
             </p>
-          </div>
+					</div>
 
           <div class="text-center">
             <h3 class="font-mono text-black mb-4 uppercase tracking-wider text-sm">
@@ -168,8 +207,8 @@
             <p class="text-gray-600 leading-relaxed font-light">
               System design and scalable product development under <strong>EthicCode Technologies</strong>.
             </p>
-          </div>
-        </div>
+					</div>
+				</div>
 
         <div class="text-center space-y-6">
           <div class="max-w-2xl mx-auto">
@@ -178,10 +217,10 @@
               currently scaling Conexion and developing new IoT solutions.
             </p>
             <div class="w-24 h-px bg-gray-300 mx-auto"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+			</div>
+								</div>
+							</div>
+						</div>
   </section>
 
   <!-- Skills Section -->
@@ -192,7 +231,7 @@
           Skills
         </h2>
         <div class="w-16 h-px bg-black mx-auto"></div>
-      </div>
+						</div>
 
       <div class="space-y-12">
         <div class="text-center">
@@ -203,8 +242,8 @@
             <span class="font-mono text-gray-600 text-sm">Python</span>
             <span class="text-gray-300">•</span>
             <span class="font-mono text-gray-600 text-sm">C</span>
-          </div>
-        </div>
+					</div>
+				</div>
 
         <div class="text-center">
           <h3 class="font-mono text-black mb-6 uppercase tracking-wider text-sm">Backend</h3>
@@ -216,8 +255,8 @@
             <span class="font-mono text-gray-600 text-sm">PostgreSQL</span>
             <span class="text-gray-300">•</span>
             <span class="font-mono text-gray-600 text-sm">MongoDB</span>
-          </div>
-        </div>
+							</div>
+						</div>
 
         <div class="text-center">
           <h3 class="font-mono text-black mb-6 uppercase tracking-wider text-sm">Hardware</h3>
@@ -229,10 +268,10 @@
             <span class="font-mono text-gray-600 text-sm">IoT</span>
             <span class="text-gray-300">•</span>
             <span class="font-mono text-gray-600 text-sm">AWS</span>
-          </div>
-        </div>
-      </div>
-    </div>
+						</div>
+					</div>
+				</div>
+								</div>
   </section>
 
   <!-- Projects Section -->
@@ -243,16 +282,16 @@
           Work
         </h2>
         <div class="w-16 h-px bg-black mx-auto"></div>
-      </div>
-
+						</div>
+								
       <div id="projects-container" class="space-y-16">
         <!-- Projects will be loaded here -->
-      </div>
-    </div>
+						</div>
+					</div>
   </section>
 
-  <!-- Contact Section -->
-  <footer id="contact" class="py-32 bg-black text-white" tabindex="-1">
+    <!-- Contact Section -->
+  <footer id="contact" class="py-32 bg-black text-white mobile-footer" tabindex="-1">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h2 class="font-display text-3xl md:text-4xl font-light mb-8 tracking-tight">
         Contact
@@ -263,39 +302,181 @@
         <a href="mailto:mrtag08@gmail.com" class="font-mono text-lg text-white hover:text-gray-300 transition-colors duration-300">
           mrtag08@gmail.com
         </a>
-      </div>
+				</div>
 
       <!-- Social Links -->
-      <div class="flex justify-center gap-12 mb-16 text-sm font-mono uppercase tracking-wider">
-        <a href="https://github.com/MRTAG08" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors duration-300">
+      <div class="flex justify-center gap-6 lg:gap-12 mb-16 text-sm font-mono uppercase tracking-wider flex-wrap">
+        <a href="https://github.com/MRTAG08" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors duration-300 mb-2">
           GitHub
         </a>
-        <a href="https://www.linkedin.com/in/mrtag08" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors duration-300">
+        <a href="https://www.linkedin.com/in/mrtag08" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors duration-300 mb-2">
           LinkedIn
         </a>
-        <a href="./Instagram/" class="text-gray-400 hover:text-white transition-colors duration-300">
+        <a href="./Instagram/" class="text-gray-400 hover:text-white transition-colors duration-300 mb-2">
           Instagram
         </a>
-        <a href="./Twitter/" class="text-gray-400 hover:text-white transition-colors duration-300">
+        <a href="./Twitter/" class="text-gray-400 hover:text-white transition-colors duration-300 mb-2">
           Twitter
         </a>
-        <a href="./YouTube/" class="text-gray-400 hover:text-white transition-colors duration-300">
+        <a href="./YouTube/" class="text-gray-400 hover:text-white transition-colors duration-300 mb-2">
           YouTube
         </a>
-      </div>
+			</div>
 
       <!-- Footer -->
-      <div class="border-t border-gray-800 pt-8">
+      <div class="border-t border-gray-800 pt-8 pb-20 lg:pb-8">
         <p class="text-gray-500 font-mono text-sm">
           © <span id="year"></span> Atharva Chauhan
         </p>
-      </div>
-    </div>
-  </footer>
+			</div>
+		</div>
+	</footer>
 
   <script src="./script.js" defer></script>
 
   <style>
+    /* Global viewport constraints and smooth scrolling */
+    * {
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      width: 100vw;
+      max-width: 100vw;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    body {
+      width: 100vw;
+      max-width: 100vw;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Prevent any element from causing horizontal scroll */
+    * {
+      max-width: 100vw;
+    }
+    
+    /* Mobile navigation specific styles */
+    .mobile-nav {
+      width: 100vw !important;
+      max-width: 100vw !important;
+      left: 0 !important;
+      right: 0 !important;
+      box-sizing: border-box !important;
+      padding: 8px 4px !important;
+    }
+    
+    .mobile-nav-container {
+      width: 100% !important;
+      max-width: 100% !important;
+      display: flex !important;
+      gap: 0 !important;
+      box-sizing: border-box !important;
+    }
+    
+    .mobile-nav-btn {
+      flex: 1 !important;
+      min-width: 0 !important;
+      max-width: none !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+      padding: 4px 2px !important;
+      box-sizing: border-box !important;
+      border: none !important;
+      background: transparent !important;
+    }
+    
+    .nav-dot-container {
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2px auto;
+    }
+    
+    .nav-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-text {
+      font-size: 10px;
+      line-height: 1;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+    
+    /* Mobile footer specific styles */
+    @media (max-width: 1023px) {
+      .mobile-footer {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+        margin-bottom: 80px; /* Extra space above mobile nav */
+      }
+      
+      .mobile-footer .py-32 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+      }
+      
+      .mobile-footer .mb-16 {
+        margin-bottom: 2rem !important;
+      }
+      
+      .mobile-footer .gap-6 {
+        gap: 1rem !important;
+      }
+      
+      .mobile-footer .text-3xl {
+        font-size: 1.5rem !important;
+      }
+      
+      .mobile-footer .text-lg {
+        font-size: 1rem !important;
+      }
+    }
+    
+    /* Enhanced smooth scrolling */
+    @media (prefers-reduced-motion: no-preference) {
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Smooth scrolling for all internal links */
+      a[href^="#"] {
+        scroll-behavior: smooth;
+      }
+      
+      /* Smooth transitions for navigation elements */
+      .nav-dot, .mobile-nav-btn, .desktop-nav button {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+    
+    /* Respect user's motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-20px); }
@@ -374,9 +555,72 @@
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    /* Better mobile touch targets */
-    @media (max-width: 768px) {
-      .haptic-btn {
+    /* Desktop-specific styles */
+    @media (min-width: 1024px) {
+      .desktop-nav .nav-dot {
+        cursor: pointer;
+      }
+      
+      .desktop-nav .nav-dot:hover {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      }
+      
+      .desktop-nav .nav-dot.active {
+        background-color: #000;
+        transform: scale(1.3);
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      }
+      
+      /* Desktop hover effects */
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Desktop animations */
+      .desktop-nav .nav-label {
+        backdrop-filter: blur(10px);
+      }
+    }
+
+    /* Mobile-specific styles */
+    @media (max-width: 1023px) {
+      /* Mobile navigation styling */
+      .mobile-nav {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        height: 60px;
+      }
+      
+      .mobile-nav-btn {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        min-height: 44px;
+        flex: 1;
+        max-width: none;
+        overflow: hidden;
+      }
+      
+      .mobile-nav-btn:active {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+      
+      .mobile-nav-btn.active .text-xs {
+        color: #000 !important;
+      }
+      
+      .mobile-nav-btn.active div div {
+        background-color: #000 !important;
+        transform: scale(1.2);
+      }
+      
+      /* Add bottom padding to body for mobile nav */
+      body {
+        padding-bottom: 60px;
+      }
+      
+      /* Mobile touch targets */
+      .haptic-btn, .touch-target {
         min-height: 44px;
         min-width: 44px;
         display: flex;
@@ -384,29 +628,138 @@
         justify-content: center;
       }
       
-      .card {
-        margin-bottom: 1rem;
-      }
-      
-      /* Larger profile image on mobile */
-      .hero .w-28 {
-        width: 8rem;
-        height: 8rem;
-      }
-      
-      /* Better spacing on mobile */
+      /* Mobile spacing adjustments */
       .py-32 {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
       }
       
-      /* Mobile-friendly text sizes */
+      /* Mobile typography */
       .text-4xl {
-        font-size: 2.25rem;
+        font-size: 2rem;
       }
       
       .text-6xl {
-        font-size: 3rem;
+        font-size: 2.5rem;
+      }
+      
+      .text-3xl {
+        font-size: 1.75rem;
+      }
+      
+      /* Mobile card optimizations */
+      .card {
+        margin-bottom: 1.5rem;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      
+      /* Mobile hero adjustments */
+      #hero {
+        padding-bottom: 2rem;
+      }
+      
+      /* Mobile profile image */
+      .w-28 {
+        width: 6rem !important;
+        height: 6rem !important;
+      }
+      
+      .md\:w-32 {
+        width: 7rem !important;
+        height: 7rem !important;
+      }
+      
+      /* Mobile section spacing */
+      section {
+        scroll-margin-top: 60px;
+      }
+      
+      /* Mobile grid improvements */
+      .grid {
+        gap: 1rem;
+      }
+      
+      .md\:grid-cols-2 {
+        grid-template-columns: 1fr;
+      }
+      
+      .md\:grid-cols-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Extra small mobile devices (320px and up) */
+    @media (max-width: 375px) {
+      .mobile-nav {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+        height: 56px;
+      }
+      
+      .mobile-nav-btn {
+        padding: 0.25rem 0.125rem;
+      }
+      
+      .mobile-nav-btn span {
+        font-size: 0.6875rem; /* 11px */
+        line-height: 1;
+      }
+      
+      .mobile-nav-btn div {
+        width: 0.875rem; /* 14px */
+        height: 0.875rem; /* 14px */
+        margin-bottom: 0.125rem;
+      }
+      
+      .mobile-nav-btn div div {
+        width: 0.25rem; /* 4px */
+        height: 0.25rem; /* 4px */
+      }
+      
+      body {
+        padding-bottom: 56px;
+      }
+      
+      section {
+        scroll-margin-top: 56px;
+      }
+      
+      /* Smaller typography for very small screens */
+      .text-4xl {
+        font-size: 1.75rem;
+      }
+      
+      .text-6xl {
+        font-size: 2.25rem;
+      }
+      
+      .text-lg {
+        font-size: 1rem;
+      }
+    }
+
+    /* Very small mobile devices (320px and smaller) */
+    @media (max-width: 320px) {
+      .mobile-nav {
+        height: 52px;
+      }
+      
+      .mobile-nav-btn span {
+        font-size: 0.625rem; /* 10px */
+      }
+      
+      .mobile-nav-btn div {
+        width: 0.75rem; /* 12px */
+        height: 0.75rem; /* 12px */
+      }
+      
+      body {
+        padding-bottom: 52px;
+      }
+      
+      section {
+        scroll-margin-top: 52px;
       }
     }
     

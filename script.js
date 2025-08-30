@@ -1,6 +1,88 @@
 // Set current year
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// Enhanced smooth scrolling function with custom easing
+function smoothScrollTo(targetPosition, duration = 800) {
+  const startPosition = window.pageYOffset;
+  const distance = targetPosition - startPosition;
+  let startTime = null;
+  
+  // Easing function for smooth animation
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+  
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+    
+    const ease = easeInOutCubic(progress);
+    window.scrollTo(0, startPosition + distance * ease);
+    
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    }
+  }
+  
+  requestAnimationFrame(animation);
+}
+
+// Global smooth scrolling for all internal links
+function initializeSmoothScrolling() {
+  // Handle all internal anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href === '#' || href === '') return;
+      
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        
+        // Calculate offset for mobile navigation
+        let offset = 0;
+        if (window.innerWidth < 1024) {
+          const mobileNav = document.querySelector('.mobile-nav');
+          if (mobileNav) {
+            offset = mobileNav.offsetHeight + 10; // 10px buffer
+          }
+        }
+        
+        const targetPosition = target.offsetTop - offset;
+        smoothScrollTo(targetPosition, 1000);
+        
+        // Update URL without jumping
+        if (history.pushState) {
+          history.pushState(null, null, href);
+        }
+        
+        triggerHaptic('navigation');
+      }
+    });
+  });
+  
+  // Handle back/forward browser navigation
+  window.addEventListener('popstate', (e) => {
+    const hash = window.location.hash;
+    if (hash) {
+      const target = document.querySelector(hash);
+      if (target) {
+        let offset = 0;
+        if (window.innerWidth < 1024) {
+          const mobileNav = document.querySelector('.mobile-nav');
+          if (mobileNav) {
+            offset = mobileNav.offsetHeight + 10;
+          }
+        }
+        
+        const targetPosition = target.offsetTop - offset;
+        smoothScrollTo(targetPosition, 600);
+      }
+    }
+  });
+}
+
 // Enhanced haptic feedback helper
 function triggerHaptic(type = 'light') {
   if ('vibrate' in navigator) {
@@ -48,7 +130,7 @@ function addUniversalHapticFeedback() {
         triggerHaptic('card');
       } else if (target.matches('a[href^="mailto:"]')) {
         triggerHaptic('success');
-      } else {
+		} else {
         triggerHaptic('medium');
       }
     }
@@ -85,23 +167,7 @@ function addUniversalHapticFeedback() {
     }
   }, { passive: true });
 
-  // 6. Scroll feedback (throttled)
-  let scrollTimeout;
-  let lastScrollY = window.scrollY;
-  
-  window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    const scrollDelta = Math.abs(currentScrollY - lastScrollY);
-    
-    // Only trigger haptic on significant scroll movement
-    if (scrollDelta > 50) {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        triggerHaptic('scroll');
-      }, 100);
-      lastScrollY = currentScrollY;
-    }
-  }, { passive: true });
+  // 6. Scroll feedback removed for better UX
 
   // 7. Section transition feedback
   const sectionObserver = new IntersectionObserver((entries) => {
@@ -131,7 +197,7 @@ function addUniversalHapticFeedback() {
     if (target) {
       longPressTimeout = setTimeout(() => {
         triggerHaptic('heavy');
-      }, 500);
+		}, 500);
     }
   }, { passive: true });
 
@@ -335,53 +401,110 @@ function createCompanyCard(company) {
   `;
 }
 
-// Side navigation
-function setupSideNav() {
-  const navButtons = document.querySelectorAll('nav[aria-label="Section navigation"] button');
+// Unified navigation system for desktop and mobile
+function setupNavigation() {
+  const desktopNavButtons = document.querySelectorAll('.desktop-nav .nav-dot');
+  const mobileNavButtons = document.querySelectorAll('.mobile-nav .mobile-nav-btn');
+  const allNavButtons = [...desktopNavButtons, ...mobileNavButtons];
   const sections = ['hero', 'about', 'skills', 'projects', 'contact'].map(id => document.getElementById(id));
 
-  // Click handlers
-  navButtons.forEach(button => {
-    button.addEventListener('click', () => {
+  // Click handlers for all navigation buttons
+  allNavButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
       const targetId = button.dataset.target.substring(1);
       const target = document.getElementById(targetId);
       if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
+        // Smooth scroll with dynamic offset for mobile navigation
+        let offset = 0;
+        if (window.innerWidth < 1024) {
+          // Get actual mobile nav height dynamically
+          const mobileNav = document.querySelector('.mobile-nav');
+          if (mobileNav) {
+            offset = mobileNav.offsetHeight;
+          } else {
+            offset = 60; // fallback
+          }
+        }
+        const targetPosition = target.offsetTop - offset;
+        
+        // Enhanced smooth scrolling with custom easing
+        smoothScrollTo(targetPosition, 800);
+        
+        triggerHaptic('navigation');
+				}
+			});
+	});
 
-  // Scroll spy
+  // Enhanced scroll spy for both navigation systems
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.id;
-        navButtons.forEach((btn, index) => {
+        
+        // Update desktop navigation
+        desktopNavButtons.forEach(btn => {
           const isActive = btn.dataset.target === `#${id}`;
           btn.setAttribute('aria-current', isActive ? 'true' : 'false');
-          btn.classList.toggle('bg-black', isActive);
-          btn.classList.toggle('bg-gray-300', !isActive);
-          btn.classList.toggle('bg-gray-200', !isActive);
+          btn.classList.toggle('active', isActive);
+          if (isActive) {
+            btn.style.backgroundColor = '#000';
+            btn.style.transform = 'scale(1.3)';
+          } else {
+            btn.style.backgroundColor = '#d1d5db';
+            btn.style.transform = 'scale(1)';
+          }
+        });
+        
+        // Update mobile navigation
+        mobileNavButtons.forEach(btn => {
+          const isActive = btn.dataset.target === `#${id}`;
+          btn.setAttribute('aria-current', isActive ? 'true' : 'false');
+          btn.classList.toggle('active', isActive);
+          
+          const dot = btn.querySelector('.nav-dot');
+          const label = btn.querySelector('.nav-text');
+          
+          if (dot) {
+            if (isActive) {
+              dot.className = 'nav-dot bg-black';
+              dot.style.transform = 'scale(1.2)';
+            } else {
+              dot.className = 'nav-dot bg-gray-400';
+              dot.style.transform = 'scale(1)';
+            }
+          }
+          
+          if (label) {
+            if (isActive) {
+              label.className = 'nav-text font-mono text-black';
+            } else {
+              label.className = 'nav-text font-mono text-gray-400';
+            }
+          }
         });
       }
     });
-  }, { threshold: 0.5 });
+  }, { 
+    threshold: 0.3,
+    rootMargin: '-10% 0px -10% 0px'
+  });
 
   sections.forEach(section => {
     if (section) observer.observe(section);
   });
 
-  // Keyboard navigation
+  // Keyboard navigation (desktop only)
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    if (window.innerWidth >= 1024 && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
       e.preventDefault();
-      const currentActive = document.querySelector('nav[aria-label="Section navigation"] button[aria-current="true"]');
+      const currentActive = document.querySelector('.desktop-nav .nav-dot[aria-current="true"]');
       if (currentActive) {
-        const currentIndex = Array.from(navButtons).indexOf(currentActive);
+        const currentIndex = Array.from(desktopNavButtons).indexOf(currentActive);
         const nextIndex = e.key === 'ArrowDown' 
-          ? Math.min(currentIndex + 1, navButtons.length - 1)
+          ? Math.min(currentIndex + 1, desktopNavButtons.length - 1)
           : Math.max(currentIndex - 1, 0);
-        navButtons[nextIndex].click();
+        desktopNavButtons[nextIndex].click();
       }
     }
   });
@@ -435,14 +558,85 @@ function addFunInteractions() {
   });
 }
 
+// Simplified mobile navigation setup for Galaxy S25 and other devices
+function setupMobileNav() {
+  const mobileNav = document.querySelector('.mobile-nav');
+  if (!mobileNav) return;
+  
+  function updateMobileNav() {
+    const viewportWidth = window.innerWidth;
+    
+    // Only apply to mobile screens
+    if (viewportWidth >= 1024) {
+      document.body.style.paddingBottom = '0';
+      return;
+    }
+    
+    console.log('Galaxy S25 viewport width:', viewportWidth);
+    
+    // Fixed height for consistency across all devices
+    const navHeight = 56;
+    
+    // Force viewport constraints
+    mobileNav.style.width = '100vw';
+    mobileNav.style.maxWidth = '100vw';
+    mobileNav.style.height = `${navHeight}px`;
+    mobileNav.style.left = '0';
+    mobileNav.style.right = 'auto';
+    mobileNav.style.padding = '8px 4px';
+    mobileNav.style.boxSizing = 'border-box';
+    mobileNav.style.overflow = 'hidden';
+    
+    // Update body padding
+    document.body.style.paddingBottom = `${navHeight + 20}px`; // Extra 20px buffer
+    document.body.style.width = '100vw';
+    document.body.style.maxWidth = '100vw';
+    document.body.style.overflowX = 'hidden';
+    
+    // Update section scroll margins
+    document.querySelectorAll('section').forEach(section => {
+      section.style.scrollMarginTop = `${navHeight}px`;
+      section.style.width = '100vw';
+      section.style.maxWidth = '100vw';
+      section.style.overflowX = 'hidden';
+    });
+    
+    // Ensure footer has proper spacing above mobile nav
+    const footer = document.querySelector('#contact');
+    if (footer) {
+      footer.style.marginBottom = `${navHeight + 20}px`;
+      footer.style.width = '100vw';
+      footer.style.maxWidth = '100vw';
+      footer.style.overflowX = 'hidden';
+    }
+    
+    console.log('Mobile nav configured for viewport:', viewportWidth);
+  }
+  
+  // Initial setup
+  updateMobileNav();
+  
+  // Update on resize and orientation change
+  window.addEventListener('resize', updateMobileNav, { passive: true });
+  window.addEventListener('orientationchange', () => {
+    setTimeout(updateMobileNav, 300);
+  }, { passive: true });
+}
+
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize universal haptic feedback FIRST
   addUniversalHapticFeedback();
   
+  // Initialize smooth scrolling for all links
+  initializeSmoothScrolling();
+  
+  // Setup mobile navigation
+  setupMobileNav();
+  
   // Then initialize other features
   loadProjects();
-  setupSideNav();
+  setupNavigation(); // Use new unified navigation system
   setupScrollAnimations();
   addFunInteractions();
   
@@ -458,30 +652,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add gesture recognition
     addGestureHaptics();
-  }
-  
-  // Handle mobile navigation with haptic feedback
-  let lastScrollY = window.scrollY;
-  const mobileNav = document.querySelector('nav[aria-label="Mobile navigation"]');
-  
-  if (mobileNav) {
-    window.addEventListener('scroll', () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down, hide mobile nav with haptic
-        mobileNav.style.transform = 'translateX(-50%) translateY(100px)';
-        mobileNav.style.opacity = '0';
-        triggerHaptic('light');
-      } else if (currentScrollY < lastScrollY) {
-        // Scrolling up, show mobile nav with haptic
-        mobileNav.style.transform = 'translateX(-50%) translateY(0)';
-        mobileNav.style.opacity = '1';
-        triggerHaptic('light');
-      }
-      
-      lastScrollY = currentScrollY;
-    }, { passive: true });
   }
   
   // Add page load completion haptic
