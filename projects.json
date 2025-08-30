@@ -7,7 +7,7 @@
       "href": "https://conexion.in",
       "github": "",
       "img": "./AILo7yTQrcEhd.jpg",
-      "tech": ["Node.js", "PostgreSQL", "QR Codes", "AWS", "REST APIs"],
+      "tech": ["Node.js", "MySQL", "QR Codes", "AWS", "REST APIs"],
       "status": "Live",
       "type": "SaaS Product",
       "year": "2024-2025",

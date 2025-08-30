@@ -276,7 +276,7 @@ function renderProjects(data) {
     html += `
       <div class="mb-20">
         <h3 class="text-2xl font-bold text-slate-800 mb-8 flex items-center">
-          <span class="mr-3">⭐</span> Featured Projects
+          <span class="mr-3">•</span> Featured Projects
         </h3>
         <div class="grid lg:grid-cols-2 gap-8">
     `;
