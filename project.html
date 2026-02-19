@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,52 +9,62 @@
   <meta name="keywords" content="Atharva Chauhan, Backend Developer, Software Engineer, Projects, Portfolio">
   <meta name="author" content="Atharva Chauhan">
   <meta name="robots" content="index, follow">
-  
-  <!-- Favicon -->
+
   <link rel="icon" type="image/jpeg" href="./photo.jpg">
+
+  <!-- Force HTTPS -->
+  <script>
+    if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      location.replace(`https://${location.hostname}${location.pathname}${location.search}`);
+    }
+  </script>
   <link rel="apple-touch-icon" href="./photo.jpg">
   <link rel="shortcut icon" type="image/jpeg" href="./photo.jpg">
-  
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tagiswild.github.io/">
   <meta property="og:title" id="og-title" content="Project - Atharva Chauhan">
   <meta property="og:description" id="og-desc" content="Project details - Atharva Chauhan">
   <meta property="og:image" content="https://tagiswild.github.io/photo.jpg">
-  
+
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" id="twitter-title" content="Project - Atharva Chauhan">
   <meta name="twitter:description" id="twitter-desc" content="Project details - Atharva Chauhan">
   <meta name="twitter:image" content="https://tagiswild.github.io/photo.jpg">
-  
+
   <!-- Additional SEO -->
   <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://tagiswild.github.io/">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <style>
     html {
       scroll-behavior: smooth;
     }
-    
+
     /* Enhanced smooth scrolling */
     @media (prefers-reduced-motion: no-preference) {
       html {
         scroll-behavior: smooth;
       }
-      
+
       a[href^="#"] {
         scroll-behavior: smooth;
       }
     }
-    
+
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
       }
-      
-      *, *::before, *::after {
+
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
@@ -92,15 +103,18 @@
     }
   </script>
 </head>
+
 <body class="bg-white text-gray-900 font-sans">
   <!-- Navigation -->
   <nav class="bg-white border-b border-gray-200">
     <div class="max-w-6xl mx-auto px-6 py-6">
       <div class="flex items-center justify-between">
-        <a href="./index.html" class="font-display font-light text-xl text-black hover:text-gray-600 transition-colors tracking-tight">
+        <a href="./index.html"
+          class="font-display font-light text-xl text-black hover:text-gray-600 transition-colors tracking-tight">
           Atharva Chauhan
         </a>
-        <a href="./index.html#projects" class="font-mono text-sm text-gray-600 hover:text-black transition-colors uppercase tracking-wider back-link">
+        <a href="./index.html#projects"
+          class="font-mono text-sm text-gray-600 hover:text-black transition-colors uppercase tracking-wider back-link">
           ← Back
         </a>
       </div>
@@ -127,15 +141,19 @@
           <div>
             <div class="flex items-center gap-6 mb-8">
               <span id="project-type" class="text-xs font-mono text-gray-500 uppercase tracking-wider"></span>
-              <span id="project-status" class="px-2 py-1 bg-black text-white text-xs font-mono uppercase tracking-wider"></span>
+              <span id="project-status"
+                class="px-2 py-1 bg-black text-white text-xs font-mono uppercase tracking-wider"></span>
             </div>
-            <h1 id="project-title" class="font-display text-3xl md:text-4xl font-light text-black mb-6 tracking-tight leading-tight"></h1>
+            <h1 id="project-title"
+              class="font-display text-3xl md:text-4xl font-light text-black mb-6 tracking-tight leading-tight"></h1>
             <p id="project-desc" class="text-lg text-gray-600 mb-8 leading-relaxed font-light"></p>
             <div class="flex flex-wrap gap-4">
-              <a id="project-link" href="#" class="hidden bg-black text-white px-6 py-3 font-mono text-sm uppercase tracking-wider hover:bg-gray-800 transition-colors">
+              <a id="project-link" href="#"
+                class="hidden bg-black text-white px-6 py-3 font-mono text-sm uppercase tracking-wider hover:bg-gray-800 transition-colors">
                 View Project
               </a>
-              <a id="github-link" href="#" class="hidden border border-black text-black px-6 py-3 font-mono text-sm uppercase tracking-wider hover:bg-black hover:text-white transition-all">
+              <a id="github-link" href="#"
+                class="hidden border border-black text-black px-6 py-3 font-mono text-sm uppercase tracking-wider hover:bg-black hover:text-white transition-all">
                 GitHub
               </a>
             </div>
@@ -165,7 +183,7 @@
         <div class="prose prose-lg max-w-none">
           <h2 class="font-display text-3xl font-bold text-slate-800 mb-6">About This Project</h2>
           <div id="project-long-desc" class="text-slate-700 leading-relaxed mb-8"></div>
-          
+
           <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Technologies Used</h3>
           <div id="tech-stack" class="flex flex-wrap gap-3 mb-8"></div>
 
@@ -192,7 +210,8 @@
       <div class="text-6xl mb-4">😕</div>
       <h1 class="text-2xl font-bold text-slate-800 mb-4">Project Not Found</h1>
       <p class="text-slate-600 mb-8">The project you're looking for doesn't exist or has been moved.</p>
-      <a href="./index.html" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+      <a href="./index.html"
+        class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
         Go Back Home
       </a>
     </div>
@@ -217,7 +236,7 @@
         };
         navigator.vibrate(patterns[type] || patterns.light);
       }
-      
+
       if (window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') {
         if (navigator.vibrate) {
           const iosPatterns = {
@@ -267,11 +286,11 @@
       // Scroll feedback
       let scrollTimeout;
       let lastScrollY = window.scrollY;
-      
+
       window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY;
         const scrollDelta = Math.abs(currentScrollY - lastScrollY);
-        
+
         if (scrollDelta > 50) {
           clearTimeout(scrollTimeout);
           scrollTimeout = setTimeout(() => {
@@ -292,23 +311,23 @@
         // Add timeout to fetch request
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-        
+
         const response = await fetch('./projects.json', {
           signal: controller.signal
         });
-        
+
         clearTimeout(timeoutId);
-        
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const data = await response.json();
-        
+
         // Find the project
         let project = null;
         let allProjects = [];
-        
+
         // Search in all project categories
         if (data.featured) {
           allProjects = allProjects.concat(data.featured);
@@ -316,9 +335,9 @@
         if (data.projects) {
           allProjects = allProjects.concat(data.projects);
         }
-        
+
         // Find project by ID (using title as ID for simplicity)
-        project = allProjects.find(p => 
+        project = allProjects.find(p =>
           p.title.toLowerCase().replace(/\s+/g, '-') === projectId
         );
 
@@ -330,13 +349,13 @@
 
         // Populate project details
         populateProject(project, allProjects.filter(p => p !== project));
-        
+
       } catch (error) {
         console.error('Error loading project:', error);
-        
+
         // Show error state
         showError();
-        
+
         // Auto-redirect after 3 seconds if it's a network error
         if (error.name === 'TypeError' || error.message.includes('fetch') || error.name === 'AbortError') {
           setTimeout(() => {
@@ -365,9 +384,9 @@
       // Status badge
       const statusEl = document.getElementById('project-status');
       statusEl.textContent = project.status;
-      const statusColor = project.status === 'Live' ? 'bg-green-500 text-white' : 
-                         project.status === 'In Development' ? 'bg-yellow-500 text-white' : 
-                         'bg-blue-500 text-white';
+      const statusColor = project.status === 'Live' ? 'bg-green-500 text-white' :
+        project.status === 'In Development' ? 'bg-yellow-500 text-white' :
+          'bg-blue-500 text-white';
       statusEl.className = `px-3 py-1 rounded-full text-sm font-semibold ${statusColor}`;
 
       // Links
@@ -394,7 +413,7 @@
       // Collaboration (for LibMan)
       if (project.title === 'LibMan') {
         document.getElementById('collaboration-section').classList.remove('hidden');
-        document.getElementById('collaboration-details').textContent = 
+        document.getElementById('collaboration-details').textContent =
           'Collaborated with Chandrayan Paul on this comprehensive library management system. I focused on the deep backend architecture, deployment infrastructure, and release management system.';
       }
 
@@ -425,11 +444,11 @@
     function showError() {
       document.getElementById('loading').classList.add('hidden');
       document.getElementById('error-state').classList.remove('hidden');
-      
+
       // Add haptic feedback for error
       triggerHaptic('error');
     }
-    
+
     function showLoading() {
       document.getElementById('loading').classList.remove('hidden');
       document.getElementById('error-state').classList.add('hidden');
@@ -442,12 +461,12 @@
       const slideOverlay = document.createElement('div');
       slideOverlay.className = 'fixed inset-0 z-50 bg-gradient-to-br from-gray-50 to-white transform -translate-x-full transition-transform duration-500 ease-out';
       document.body.appendChild(slideOverlay);
-      
+
       // Slide in from left
       setTimeout(() => {
         slideOverlay.style.transform = 'translateX(0)';
       }, 10);
-      
+
       // Navigate back after slide animation
       setTimeout(() => {
         window.location.href = './index.html#projects';
@@ -475,14 +494,14 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Initialize haptic feedback first
       addProjectPageHaptics();
-      
+
       // Add smooth transition for back link
       document.querySelector('.back-link').addEventListener('click', (e) => {
         e.preventDefault();
         triggerHaptic('navigation');
         smoothTransitionBack();
       });
-      
+
       // Add fallback for direct navigation
       if (!projectId) {
         showError();
@@ -492,12 +511,12 @@
         loadProject();
         triggerHaptic('light');
       }
-      
+
       // Page load completion haptic
       setTimeout(() => {
         triggerHaptic('success');
       }, 1000);
-      
+
       // Add error handling for failed project loads
       window.addEventListener('error', (e) => {
         console.error('Page error:', e);
@@ -511,4 +530,5 @@
     });
   </script>
 </body>
+
 </html>

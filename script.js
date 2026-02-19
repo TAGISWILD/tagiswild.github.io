@@ -6,25 +6,25 @@ function smoothScrollTo(targetPosition, duration = 800) {
   const startPosition = window.pageYOffset;
   const distance = targetPosition - startPosition;
   let startTime = null;
-  
+
   // Easing function for smooth animation
   function easeInOutCubic(t) {
     return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
-  
+
   function animation(currentTime) {
     if (startTime === null) startTime = currentTime;
     const timeElapsed = currentTime - startTime;
     const progress = Math.min(timeElapsed / duration, 1);
-    
+
     const ease = easeInOutCubic(progress);
     window.scrollTo(0, startPosition + distance * ease);
-    
+
     if (timeElapsed < duration) {
       requestAnimationFrame(animation);
     }
   }
-  
+
   requestAnimationFrame(animation);
 }
 
@@ -35,11 +35,11 @@ function initializeSmoothScrolling() {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
       if (href === '#' || href === '') return;
-      
+
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        
+
         // Calculate offset for mobile navigation
         let offset = 0;
         if (window.innerWidth < 1024) {
@@ -48,20 +48,20 @@ function initializeSmoothScrolling() {
             offset = mobileNav.offsetHeight + 10; // 10px buffer
           }
         }
-        
+
         const targetPosition = target.offsetTop - offset;
         smoothScrollTo(targetPosition, 1000);
-        
+
         // Update URL without jumping
         if (history.pushState) {
           history.pushState(null, null, href);
         }
-        
+
         triggerHaptic('navigation');
       }
     });
   });
-  
+
   // Handle back/forward browser navigation
   window.addEventListener('popstate', (e) => {
     const hash = window.location.hash;
@@ -75,7 +75,7 @@ function initializeSmoothScrolling() {
             offset = mobileNav.offsetHeight + 10;
           }
         }
-        
+
         const targetPosition = target.offsetTop - offset;
         smoothScrollTo(targetPosition, 600);
       }
@@ -83,8 +83,147 @@ function initializeSmoothScrolling() {
   });
 }
 
+// Sound Engine for Mac-like audio feedback
+const SoundEngine = {
+  ctx: null,
+  isMuted: false,
+
+  init() {
+    if (!this.ctx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioContext();
+    }
+  },
+
+  play(type) {
+    if (this.isMuted) return;
+    if (!this.ctx) this.init();
+    if (this.ctx.state === 'suspended') this.ctx.resume();
+
+    const t = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+
+    // Sound profiles based on Mac system sounds
+    switch (type) {
+      case 'light': // Subtle tick (like trackpad)
+        osc.frequency.setValueAtTime(800, t);
+        osc.frequency.exponentialRampToValueAtTime(300, t + 0.05);
+        gain.gain.setValueAtTime(0.05, t); // Very quiet
+        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.05);
+        osc.start(t);
+        osc.stop(t + 0.05);
+        break;
+
+      case 'medium': // Standard click
+        osc.frequency.setValueAtTime(600, t);
+        osc.frequency.exponentialRampToValueAtTime(200, t + 0.1);
+        gain.gain.setValueAtTime(0.1, t);
+        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
+        osc.start(t);
+        osc.stop(t + 0.1);
+        break;
+
+      case 'heavy': // Deep thud
+        osc.frequency.setValueAtTime(150, t);
+        osc.frequency.exponentialRampToValueAtTime(50, t + 0.15);
+        gain.gain.setValueAtTime(0.15, t);
+        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.15);
+        osc.start(t);
+        osc.stop(t + 0.15);
+        break;
+
+      case 'success': // Pleasant chime
+        // Two oscillators for a chord
+        const osc2 = this.ctx.createOscillator();
+        const gain2 = this.ctx.createGain();
+        osc2.connect(gain2);
+        gain2.connect(this.ctx.destination);
+
+        osc.frequency.setValueAtTime(440, t); // A4
+        osc2.frequency.setValueAtTime(554.37, t); // C#5 (Major 3rd)
+
+        gain.gain.setValueAtTime(0.05, t);
+        gain.gain.linearRampToValueAtTime(0, t + 0.3);
+        gain2.gain.setValueAtTime(0.05, t);
+        gain2.gain.linearRampToValueAtTime(0, t + 0.3);
+
+        osc.start(t);
+        osc.stop(t + 0.3);
+        osc2.start(t);
+        osc2.stop(t + 0.3);
+        break;
+
+      case 'error': // Funk sound
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(150, t);
+        osc.frequency.linearRampToValueAtTime(100, t + 0.2);
+        gain.gain.setValueAtTime(0.1, t);
+        gain.gain.linearRampToValueAtTime(0, t + 0.2);
+        osc.start(t);
+        osc.stop(t + 0.2);
+        break;
+
+      case 'navigation': // Swoosh/Airy
+        // Use noise buffer for swoosh if possible, but simple sine sweep works for now
+        osc.frequency.setValueAtTime(400, t);
+        osc.frequency.exponentialRampToValueAtTime(800, t + 0.15);
+        gain.gain.setValueAtTime(0.05, t);
+        gain.gain.linearRampToValueAtTime(0, t + 0.15);
+        osc.start(t);
+        osc.stop(t + 0.15);
+        break;
+
+      case 'card': // Paper snap
+        osc.frequency.setValueAtTime(1200, t);
+        osc.frequency.exponentialRampToValueAtTime(100, t + 0.08);
+        gain.gain.setValueAtTime(0.08, t);
+        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.08);
+        osc.start(t);
+        osc.stop(t + 0.08);
+        break;
+
+      case 'typing': // Keyboard click
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(2000, t);
+        osc.frequency.exponentialRampToValueAtTime(1000, t + 0.03);
+        gain.gain.setValueAtTime(0.03, t);
+        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.03);
+        osc.start(t);
+        osc.stop(t + 0.03);
+        break;
+
+      default:
+        this.play('light');
+    }
+  }
+};
+
+// Initialize audio context on first interaction
+const initAudio = () => {
+  SoundEngine.init();
+  ['click', 'touchstart', 'keydown'].forEach(event =>
+    document.removeEventListener(event, initAudio)
+  );
+};
+['click', 'touchstart', 'keydown'].forEach(event =>
+  document.addEventListener(event, initAudio, { once: true })
+);
+
+
 // Enhanced haptic feedback helper
 function triggerHaptic(type = 'light') {
+  // Play sound effect (Mac-like)
+  try {
+    SoundEngine.play(type);
+  } catch (e) {
+    // Ignore audio errors
+  }
+
+  // Physical vibration (Mobile/Android)
   if ('vibrate' in navigator) {
     // Different vibration patterns for different feedback types
     const patterns = {
@@ -102,7 +241,7 @@ function triggerHaptic(type = 'light') {
     };
     navigator.vibrate(patterns[type] || patterns.light);
   }
-  
+
   // iOS haptic feedback enhancement
   if (window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') {
     if (navigator.vibrate) {
@@ -130,7 +269,7 @@ function addUniversalHapticFeedback() {
         triggerHaptic('card');
       } else if (target.matches('a[href^="mailto:"]')) {
         triggerHaptic('success');
-		} else {
+      } else {
 
         triggerHaptic('medium');
       }
@@ -198,7 +337,7 @@ function addUniversalHapticFeedback() {
     if (target) {
       longPressTimeout = setTimeout(() => {
         triggerHaptic('heavy');
-		}, 500);
+      }, 500);
 
     }
   }, { passive: true });
@@ -282,11 +421,11 @@ function renderProjects(data) {
         </h3>
         <div class="grid lg:grid-cols-2 gap-8">
     `;
-    
+
     data.featured.forEach(project => {
       html += createFeaturedProjectCard(project);
     });
-    
+
     html += `</div></div>`;
   }
 
@@ -299,11 +438,11 @@ function renderProjects(data) {
         </h3>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
     `;
-    
+
     data.projects.forEach(project => {
       html += createRegularProjectCard(project);
     });
-    
+
     html += `</div></div>`;
   }
 
@@ -316,42 +455,42 @@ function renderProjects(data) {
         </h3>
         <div class="grid md:grid-cols-2 gap-8">
     `;
-    
+
     data.companies.forEach(company => {
       html += createCompanyCard(company);
     });
-    
+
     html += `</div></div>`;
   }
 
   container.innerHTML = html;
-  
+
   // Add click handlers for project cards
   document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', (e) => {
       e.preventDefault();
       const projectId = card.dataset.projectId;
-      
+
       // Trigger haptic feedback
       triggerHaptic('card');
-      
+
       // Get the image element
       const img = card.querySelector('img');
-      
+
       // On mobile, add delay to show color transition
       if (window.innerWidth < 1024) {
         // Remove grayscale to show color
         img.classList.remove('grayscale');
         img.classList.add('grayscale-0');
-        
+
         // Add a subtle scale effect
         card.style.transform = 'scale(0.98)';
         card.style.transition = 'transform 0.2s ease';
-        
+
         // Create creative transition with card morphing
         const cardRect = card.getBoundingClientRect();
         const morphingOverlay = document.createElement('div');
-        morphingOverlay.className = 'fixed z-50 bg-white rounded-lg shadow-2xl transition-all duration-500 ease-out';
+        morphingOverlay.className = 'transition-overlay fixed z-50 bg-white rounded-lg shadow-2xl transition-all duration-500 ease-out';
         morphingOverlay.style.cssText = `
           left: ${cardRect.left}px;
           top: ${cardRect.top}px;
@@ -361,7 +500,7 @@ function renderProjects(data) {
           opacity: 0;
         `;
         document.body.appendChild(morphingOverlay);
-        
+
         // Navigate after delay to show color change
         setTimeout(() => {
           // Morph the overlay to full screen
@@ -374,7 +513,7 @@ function renderProjects(data) {
             opacity: 1;
             border-radius: 0;
           `;
-          
+
           // Navigate after morphing animation
           setTimeout(() => {
             window.location.href = `./project.html?id=${projectId}`;
@@ -383,13 +522,13 @@ function renderProjects(data) {
       } else {
         // Desktop: creative slide transition
         const slideOverlay = document.createElement('div');
-        slideOverlay.className = 'fixed inset-0 z-50 bg-gradient-to-br from-gray-50 to-white transform translate-x-full transition-transform duration-500 ease-out';
+        slideOverlay.className = 'transition-overlay fixed inset-0 z-50 bg-gradient-to-br from-gray-50 to-white transform translate-x-full transition-transform duration-500 ease-out';
         document.body.appendChild(slideOverlay);
-        
+
         // Slide in from right
         setTimeout(() => {
           slideOverlay.style.transform = 'translateX(0)';
-          
+
           // Navigate after slide animation
           setTimeout(() => {
             window.location.href = `./project.html?id=${projectId}`;
@@ -502,14 +641,14 @@ function setupNavigation() {
           }
         }
         const targetPosition = target.offsetTop - offset;
-        
+
         // Enhanced smooth scrolling with custom easing
         smoothScrollTo(targetPosition, 800);
-        
+
         triggerHaptic('navigation');
-				}
-			});
-	});
+      }
+    });
+  });
 
 
   // Enhanced scroll spy for both navigation systems
@@ -517,7 +656,7 @@ function setupNavigation() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.id;
-        
+
         // Update desktop navigation
         desktopNavButtons.forEach(btn => {
           const isActive = btn.dataset.target === `#${id}`;
@@ -531,16 +670,16 @@ function setupNavigation() {
             btn.style.transform = 'scale(1)';
           }
         });
-        
+
         // Update mobile navigation
         mobileNavButtons.forEach(btn => {
           const isActive = btn.dataset.target === `#${id}`;
           btn.setAttribute('aria-current', isActive ? 'true' : 'false');
           btn.classList.toggle('active', isActive);
-          
+
           const dot = btn.querySelector('.nav-dot');
           const label = btn.querySelector('.nav-text');
-          
+
           if (dot) {
             if (isActive) {
               dot.className = 'nav-dot bg-black';
@@ -550,7 +689,7 @@ function setupNavigation() {
               dot.style.transform = 'scale(1)';
             }
           }
-          
+
           if (label) {
             if (isActive) {
               label.className = 'nav-text font-mono text-black';
@@ -561,7 +700,7 @@ function setupNavigation() {
         });
       }
     });
-  }, { 
+  }, {
     threshold: 0.3,
     rootMargin: '-10% 0px -10% 0px'
   });
@@ -577,7 +716,7 @@ function setupNavigation() {
       const currentActive = document.querySelector('.desktop-nav .nav-dot[aria-current="true"]');
       if (currentActive) {
         const currentIndex = Array.from(desktopNavButtons).indexOf(currentActive);
-        const nextIndex = e.key === 'ArrowDown' 
+        const nextIndex = e.key === 'ArrowDown'
           ? Math.min(currentIndex + 1, desktopNavButtons.length - 1)
           : Math.max(currentIndex - 1, 0);
         desktopNavButtons[nextIndex].click();
@@ -638,21 +777,21 @@ function addFunInteractions() {
 function setupMobileNav() {
   const mobileNav = document.querySelector('.mobile-nav');
   if (!mobileNav) return;
-  
+
   function updateMobileNav() {
     const viewportWidth = window.innerWidth;
-    
+
     // Only apply to mobile screens
     if (viewportWidth >= 1024) {
       document.body.style.paddingBottom = '0';
       return;
     }
-    
+
     console.log('Galaxy S25 viewport width:', viewportWidth);
-    
+
     // Fixed height for consistency across all devices
     const navHeight = 56;
-    
+
     // Force viewport constraints
     mobileNav.style.width = '100vw';
     mobileNav.style.maxWidth = '100vw';
@@ -662,13 +801,13 @@ function setupMobileNav() {
     mobileNav.style.padding = '8px 4px';
     mobileNav.style.boxSizing = 'border-box';
     mobileNav.style.overflow = 'hidden';
-    
+
     // Update body padding
     document.body.style.paddingBottom = `${navHeight + 20}px`; // Extra 20px buffer
     document.body.style.width = '100vw';
     document.body.style.maxWidth = '100vw';
     document.body.style.overflowX = 'hidden';
-    
+
     // Update section scroll margins
     document.querySelectorAll('section').forEach(section => {
       section.style.scrollMarginTop = `${navHeight}px`;
@@ -676,7 +815,7 @@ function setupMobileNav() {
       section.style.maxWidth = '100vw';
       section.style.overflowX = 'hidden';
     });
-    
+
     // Ensure footer has proper spacing above mobile nav
     const footer = document.querySelector('#contact');
     if (footer) {
@@ -685,13 +824,13 @@ function setupMobileNav() {
       footer.style.maxWidth = '100vw';
       footer.style.overflowX = 'hidden';
     }
-    
+
     console.log('Mobile nav configured for viewport:', viewportWidth);
   }
-  
+
   // Initial setup
   updateMobileNav();
-  
+
   // Update on resize and orientation change
   window.addEventListener('resize', updateMobileNav, { passive: true });
   window.addEventListener('orientationchange', () => {
@@ -703,55 +842,62 @@ function setupMobileNav() {
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize universal haptic feedback FIRST
   addUniversalHapticFeedback();
-  
+
   // Initialize smooth scrolling for all links
   initializeSmoothScrolling();
-  
+
   // Setup mobile navigation
   setupMobileNav();
-  
+
   // Then initialize other features
   loadProjects();
   setupNavigation(); // Use new unified navigation system
   setupScrollAnimations();
   addFunInteractions();
-  
+
   // Add mobile-specific optimizations
   if ('ontouchstart' in window) {
     document.body.classList.add('touch-device');
-    
+
     // Improve touch scrolling
     document.documentElement.style.webkitOverflowScrolling = 'touch';
-    
+
     // Add enhanced touch feedback
-    document.addEventListener('touchstart', function() {}, { passive: true });
-    
+    document.addEventListener('touchstart', function () { }, { passive: true });
+
     // Add gesture recognition
     addGestureHaptics();
   }
-  
+
   // Add page load completion haptic
   setTimeout(() => {
     triggerHaptic('success');
   }, 500);
 });
 
+// Fix for mobile back button white screen issue
+window.addEventListener('pageshow', (event) => {
+  // Remove any transition overlays that might have persisted from bfcache
+  const overlays = document.querySelectorAll('.transition-overlay');
+  overlays.forEach(overlay => overlay.remove());
+});
+
 // Additional gesture-based haptics
 function addGestureHaptics() {
   let touchStartY = 0;
   let touchStartX = 0;
-  
+
   document.addEventListener('touchstart', (e) => {
     touchStartY = e.touches[0].clientY;
     touchStartX = e.touches[0].clientX;
   }, { passive: true });
-  
+
   document.addEventListener('touchmove', (e) => {
     const touchY = e.touches[0].clientY;
     const touchX = e.touches[0].clientX;
     const deltaY = touchStartY - touchY;
     const deltaX = touchStartX - touchX;
-    
+
     // Detect swipe gestures and provide haptic feedback
     if (Math.abs(deltaY) > 50 || Math.abs(deltaX) > 50) {
       // Only trigger once per gesture
@@ -768,13 +914,13 @@ function addGestureHaptics() {
         // Horizontal swipe
         triggerHaptic('medium');
       }
-      
+
       // Reset to prevent multiple triggers
       touchStartY = touchY;
       touchStartX = touchX;
     }
   }, { passive: true });
-  
+
   // Pull to refresh gesture (if at top of page)
   document.addEventListener('touchstart', (e) => {
     if (window.scrollY === 0) {
@@ -782,12 +928,12 @@ function addGestureHaptics() {
       touchStartY = touch.clientY;
     }
   }, { passive: true });
-  
+
   document.addEventListener('touchmove', (e) => {
     if (window.scrollY === 0) {
       const touch = e.touches[0];
       const deltaY = touch.clientY - touchStartY;
-      
+
       if (deltaY > 100) {
         triggerHaptic('heavy');
         touchStartY = touch.clientY; // Reset to prevent multiple triggers
