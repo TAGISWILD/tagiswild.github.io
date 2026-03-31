@@ -83,146 +83,11 @@ function initializeSmoothScrolling() {
   });
 }
 
-// Sound Engine for Mac-like audio feedback
-const SoundEngine = {
-  ctx: null,
-  isMuted: false,
-
-  init() {
-    if (!this.ctx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      this.ctx = new AudioContext();
-    }
-  },
-
-  play(type) {
-    if (this.isMuted) return;
-    if (!this.ctx) this.init();
-    if (this.ctx.state === 'suspended') this.ctx.resume();
-
-    const t = this.ctx.currentTime;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-
-    // Sound profiles based on Mac system sounds
-    switch (type) {
-      case 'light': // Subtle tick (like trackpad)
-        osc.frequency.setValueAtTime(800, t);
-        osc.frequency.exponentialRampToValueAtTime(300, t + 0.05);
-        gain.gain.setValueAtTime(0.05, t); // Very quiet
-        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.05);
-        osc.start(t);
-        osc.stop(t + 0.05);
-        break;
-
-      case 'medium': // Standard click
-        osc.frequency.setValueAtTime(600, t);
-        osc.frequency.exponentialRampToValueAtTime(200, t + 0.1);
-        gain.gain.setValueAtTime(0.1, t);
-        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
-        osc.start(t);
-        osc.stop(t + 0.1);
-        break;
-
-      case 'heavy': // Deep thud
-        osc.frequency.setValueAtTime(150, t);
-        osc.frequency.exponentialRampToValueAtTime(50, t + 0.15);
-        gain.gain.setValueAtTime(0.15, t);
-        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.15);
-        osc.start(t);
-        osc.stop(t + 0.15);
-        break;
-
-      case 'success': // Pleasant chime
-        // Two oscillators for a chord
-        const osc2 = this.ctx.createOscillator();
-        const gain2 = this.ctx.createGain();
-        osc2.connect(gain2);
-        gain2.connect(this.ctx.destination);
-
-        osc.frequency.setValueAtTime(440, t); // A4
-        osc2.frequency.setValueAtTime(554.37, t); // C#5 (Major 3rd)
-
-        gain.gain.setValueAtTime(0.05, t);
-        gain.gain.linearRampToValueAtTime(0, t + 0.3);
-        gain2.gain.setValueAtTime(0.05, t);
-        gain2.gain.linearRampToValueAtTime(0, t + 0.3);
-
-        osc.start(t);
-        osc.stop(t + 0.3);
-        osc2.start(t);
-        osc2.stop(t + 0.3);
-        break;
-
-      case 'error': // Funk sound
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(150, t);
-        osc.frequency.linearRampToValueAtTime(100, t + 0.2);
-        gain.gain.setValueAtTime(0.1, t);
-        gain.gain.linearRampToValueAtTime(0, t + 0.2);
-        osc.start(t);
-        osc.stop(t + 0.2);
-        break;
-
-      case 'navigation': // Swoosh/Airy
-        // Use noise buffer for swoosh if possible, but simple sine sweep works for now
-        osc.frequency.setValueAtTime(400, t);
-        osc.frequency.exponentialRampToValueAtTime(800, t + 0.15);
-        gain.gain.setValueAtTime(0.05, t);
-        gain.gain.linearRampToValueAtTime(0, t + 0.15);
-        osc.start(t);
-        osc.stop(t + 0.15);
-        break;
-
-      case 'card': // Paper snap
-        osc.frequency.setValueAtTime(1200, t);
-        osc.frequency.exponentialRampToValueAtTime(100, t + 0.08);
-        gain.gain.setValueAtTime(0.08, t);
-        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.08);
-        osc.start(t);
-        osc.stop(t + 0.08);
-        break;
-
-      case 'typing': // Keyboard click
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(2000, t);
-        osc.frequency.exponentialRampToValueAtTime(1000, t + 0.03);
-        gain.gain.setValueAtTime(0.03, t);
-        gain.gain.exponentialRampToValueAtTime(0.01, t + 0.03);
-        osc.start(t);
-        osc.stop(t + 0.03);
-        break;
-
-      default:
-        this.play('light');
-    }
-  }
-};
-
-// Initialize audio context on first interaction
-const initAudio = () => {
-  SoundEngine.init();
-  ['click', 'touchstart', 'keydown'].forEach(event =>
-    document.removeEventListener(event, initAudio)
-  );
-};
-['click', 'touchstart', 'keydown'].forEach(event =>
-  document.addEventListener(event, initAudio, { once: true })
-);
 
 
-// Enhanced haptic feedback helper
+
+// Enhanced haptic feedback helper (vibration only, no sound)
 function triggerHaptic(type = 'light') {
-  // Play sound effect (Mac-like)
-  try {
-    SoundEngine.play(type);
-  } catch (e) {
-    // Ignore audio errors
-  }
-
   // Physical vibration (Mobile/Android)
   if ('vibrate' in navigator) {
     // Different vibration patterns for different feedback types
@@ -745,33 +610,7 @@ function setupScrollAnimations() {
   });
 }
 
-// Add some fun interactions
-function addFunInteractions() {
-  // Emoji reactions on hover
-  const emojiElements = document.querySelectorAll('span');
-  emojiElements.forEach(el => {
-    if (/[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]/u.test(el.textContent)) {
-      el.style.cursor = 'pointer';
-      el.addEventListener('mouseenter', () => {
-        el.style.transform = 'scale(1.2) rotate(10deg)';
-        el.style.transition = 'transform 0.2s ease';
-      });
-      el.addEventListener('mouseleave', () => {
-        el.style.transform = 'scale(1) rotate(0deg)';
-      });
-    }
-  });
 
-  // Add a subtle parallax effect to background elements
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const backgrounds = document.querySelectorAll('.absolute');
-    backgrounds.forEach((bg, index) => {
-      const speed = 0.1 + (index * 0.05);
-      bg.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-  });
-}
 
 // Simplified mobile navigation setup for Galaxy S25 and other devices
 function setupMobileNav() {
@@ -853,7 +692,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadProjects();
   setupNavigation(); // Use new unified navigation system
   setupScrollAnimations();
-  addFunInteractions();
 
   // Add mobile-specific optimizations
   if ('ontouchstart' in window) {

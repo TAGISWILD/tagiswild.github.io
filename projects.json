@@ -17,7 +17,7 @@
       "title": "LibMan",
       "desc": "An Institute adapted Library Attendance and Management System built on MERN Stack with Chandrayan Paul, deployed on Heroku.",
       "longDesc": "Developed a comprehensive library management system for SIES GST with deep backend architecture. Created distribution channels for private alpha, public beta, and public release versions. Handled deployment on Heroku and integrated AWS S3 for document storage. Currently this project is hosted and students and faculties of SIES GST can Sign-Up and Login to use this library management system. ",
-      "href": "https://library-sies-92fbc1e81669.herokuapp.com",
+      "href": "https://libman.cloudctrl.online",
       "github": "",
       "img": "./imgs/libman.jpg",
       "tech": ["MongoDB", "Express.js", "Node.js", "Heroku", "AWS S3"],
@@ -36,9 +36,35 @@
       "tech": ["Spring Boot", "PostgreSQL", "ESP32", "BLE", "Facial Recognition", "Android"],
       "status": "In Development",
       "type": "IoT System",
-      "year": "2024",
+      "year": "2025",
       "featured": true
-    } 
+    },
+    {
+      "title": "Pixelverse",
+      "desc": "GDG SIESGST's flagship Designathon event, managed as Coordinator. Built the event website and invited participants from all over India for this design hackathon.",
+      "longDesc": "Managed Pixelverse — GDG SIESGST's flagship design hackathon — as a responsible Coordinator. Led the team that built the event website from scratch. Pixelverse was a Designathon that brought together design enthusiasts from across India to compete, collaborate, and create. Handled end-to-end event coordination including participant outreach, logistics, and digital presence.",
+      "href": "#",
+      "github": "",
+      "img": "./imgs/pixelverse.jpg",
+      "tech": ["React", "Tailwind CSS", "Event Management", "Team Leadership"],
+      "status": "Completed",
+      "type": "GDG SIESGST Flagship Event",
+      "year": "2026",
+      "featured": true
+    },
+    {
+      "title": "OffPay",
+      "desc": "Offline payment system enabling peer-to-peer monetary transfers without internet connectivity via Bluetooth LE, using Ed25519 cryptography and a gossip protocol for deferred settlement.",
+      "longDesc": "OffPay is a working prototype that enables peer-to-peer offline payments using commodity smartphones. Built as a Flutter Android app with a Node.js/MongoDB backend, it uses an Ed25519 dual-signature scheme for cryptographic non-repudiation and a gossip protocol for deferred transaction propagation. Transactions settle automatically in the background when connectivity is restored, achieving 100% settlement accuracy in testing. The system handles replay attacks, double-spend attempts, signature forgery, and token expiry scenarios.",
+      "href": "#",
+      "github": "",
+      "img": "./imgs/offpay.jpg",
+      "tech": ["Flutter", "Node.js", "MongoDB", "BLE", "Ed25519", "Heroku"],
+      "status": "Prototype",
+      "type": "Research Prototype",
+      "year": "2026",
+      "featured": true
+    }
   ],
   "projects": [
     {
